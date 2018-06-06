@@ -1,0 +1,54 @@
+CREATE TABLE ruolo (
+    id_ruolo   NUMBER(10) PRIMARY KEY NOT NULL,
+    nome       VARCHAR2(10) UNIQUE NOT NULL
+);
+
+CREATE TABLE utente (
+    id_utente    NUMBER(10) PRIMARY KEY NOT NULL,
+    nome         VARCHAR2(10) NOT NULL,
+    cognome      VARCHAR2(10) NOT NULL,
+    sesso        VARCHAR2(10) NOT NULL,
+    username     VARCHAR2(10) NOT NULL,
+    password     VARCHAR2(40) NOT NULL,
+    indirizzo    VARCHAR2(10) NOT NULL,
+    verificato   NUMBER(3) NOT NULL,
+    mail         VARCHAR2(10) UNIQUE NOT NULL
+);
+
+CREATE TABLE utente_ruolo (
+    id_ruolo    NUMBER(10)
+        REFERENCES ruolo ( id_ruolo ),
+    id_utente   NUMBER(10)
+        REFERENCES utente ( id_utente ),
+    PRIMARY KEY ( id_utente,id_ruolo )
+);
+
+CREATE TABLE razza (
+    id_razza   NUMBER(10) PRIMARY KEY NOT NULL,
+    razza      VARCHAR2(10) NOT NULL
+);
+
+CREATE TABLE cane (
+    id_cane        NUMBER(10) PRIMARY KEY NOT NULL,
+    taglia         VARCHAR2(10) NOT NULL,
+    chip           VARCHAR2(10),
+    sesso          VARCHAR2(10) NOT NULL,
+    data_nascita   DATE NOT NULL,
+    pedegree       NUMBER(3) NOT NULL,
+    id_utente      NUMBER(10)
+        REFERENCES utente ( id_utente ),
+    id_razza       NUMBER(10)
+        REFERENCES razza ( id_razza )
+);
+
+CREATE TABLE tipo_attivita (
+    id_attivita   NUMBER(10) PRIMARY KEY NOT NULL,
+    tipo          VARCHAR2(10) UNIQUE NOT NULL
+);
+
+CREATE TABLE dog_friendly (
+    id_friendl    NUMBER(10) PRIMARY KEY NOT NULL,
+    razza         VARCHAR2(10) UNIQUE NOT NULL,
+    id_attivita   NUMBER(10)
+        REFERENCES tipo_attivita ( id_attivita )
+);
