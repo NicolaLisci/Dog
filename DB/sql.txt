@@ -26,7 +26,7 @@ CREATE TABLE utente_ruolo (
     PRIMARY KEY ( id_utente,id_ruolo )
 );
 
-CREATE TABLE razza (
+CREATE TABLE razze (
     id_razza   NUMBER PRIMARY KEY NOT NULL,
     razza      VARCHAR2(40) NOT NULL
 );
