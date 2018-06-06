@@ -75,7 +75,7 @@ public void seteMail(String eMail) {
 	this.eMail = eMail;
 }
 
-@Override
+
 public String toString() {
 	return "Utente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", sesso=" + sesso + ", username="
 			+ username + ", password=" + password + ", indirizzo=" + indirizzo + ", nTelefono=" + nTelefono

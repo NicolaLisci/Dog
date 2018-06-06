@@ -38,7 +38,7 @@ public class TipoAttivita {
 	}
 
 
-	@Override
+
 	public String toString() {
 		return "TipoAttivita [id=" + id + ", tipoAttivita=" + tipoAttivita + ", toString()=" + super.toString() + "]";
 	}

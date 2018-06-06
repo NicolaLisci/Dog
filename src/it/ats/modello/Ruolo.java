@@ -25,7 +25,7 @@ public class Ruolo {
 	public void setRuolo(String ruolo) {
 		this.ruolo = ruolo;
 	}
-	@Override
+
 	public String toString() {
 		return "Ruolo [id=" + id + ", ruolo=" + ruolo + ", toString()=" + super.toString() + "]";
 	}

@@ -94,7 +94,7 @@ public class Cane {
 		this.idRazza = idRazza;
 	}
 
-	@Override
+
 	public String toString() {
 		return "Cane [taglia=" + taglia + ", idCane=" + idCane + ", chip=" + chip + ", sesso=" + sesso
 				+ ", dataNascita=" + dataNascita + ", Pedigree=" + Pedigree + ", idUtente=" + idUtente + ", idRazza="

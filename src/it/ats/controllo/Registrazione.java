@@ -14,13 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class RegistrazioneServlet
  */
-public class RegistrazioneServlet extends HttpServlet {
+public class Registrazione extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public RegistrazioneServlet() {
+	public Registrazione() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

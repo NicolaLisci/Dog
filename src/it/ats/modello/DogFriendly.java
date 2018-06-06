@@ -41,7 +41,6 @@ public class DogFriendly {
 		this.idAttivita = idAttivita;
 	}
 
-	@Override
 	public String toString() {
 		return "DogFriendly [id=" + id + ", nomeAttivita=" + nomeAttivita + ", idAttivita=" + idAttivita + "]";
 	}

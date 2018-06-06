@@ -31,7 +31,6 @@ public class Razza {
 		this.razza = razza;
 	}
 
-	@Override
 	public String toString() {
 		return "Razza [idRazza=" + idRazza + ", razza=" + razza + "]";
 	}
