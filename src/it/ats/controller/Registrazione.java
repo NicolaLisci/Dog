@@ -1,48 +1,120 @@
-﻿public class SendEmail estende HttpServlet {
-    
-  pubblico doGet void (richiesta HttpServletRequest,
-                    HttpServletResponse risposta)
-            getta ServletException, IOException
-  {
-      // ID e-mail del destinatario
-      String a = "abcd@gmail.com";
- 
-      // E-mail ID del mittente
-      String da = "web@gmail.com";
- 
-      // Diciamo che si invia host di posta elettronica String = "localhost" dall'host locale;
- 	// Ottenere le proprietà di sistema proprietà = System.getProperties ();
- 
-      // Impostare un properties.setProperty server di posta ( "mail.smtp.host", ospite);
- 
-      // Ottenere la sessione predefinita dell'oggetto Session Session = Session.getDefaultInstance (proprietà);
-      
-      // Impostare il tipo di contenuto della risposta response.setContentType ( "text / html; charset = UTF-8");
-      PrintWriter out = response.getWriter ();
+﻿package it.ats.controllo;
 
-      try {
-         // Crea un default MIMEMessage oggetti MIMEMessage messaggio = new MIMEMessage (sessione);
-         // Imposta il campo Da: intestazione dell'intestazione.
-         message.setFrom (nuova InternetAddress (da));
-         // Impostato su: campo di intestazione dell'intestazione.
-         message.addRecipient (Message.RecipientType.TO,
-                                  nuova InternetAddress (a));
-         // Imposta il Oggetto: campo di intestazione
-         message.setSubject ( "Questa è la riga dell'oggetto!");
-         // Ora impostare il messaggio effettivo message.setText ( "Questo è il messaggio vero e proprio");
-         // Invia il messaggio Transport.send (messaggio);
-         Titolo String = "email";
-         res String = "inviare correttamente i messaggi ...";
-         String docType = "\ n <DOCTYPE html!>";
-         out.println (docType +
-         "<HTML> \ n" +
-         "<Head> <title>" + titolo + "</ title> </ head> \ n" +
-         "<Body bgcolor = \" # f0f0f0 \ "> \ n" +
-         "<H1 align = \" centro \ ">" + titolo + "</ h1> \ n" +
-         "<P align = \" centro \ ">" + res + "</ p> \ n" +
-         "</ Body> </ html>");
-      } Catch (MessagingException mex) {
-         mex.printStackTrace ();
-      }
-   }
-} 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import it.ats.modello.Studente;
+import it.ats.persistenza.DAOException;
+import it.ats.persistenza.DAOStudente;
+import it.ats.persistenza.impl.DAOStudenteImpl;
+
+/**
+ * Servlet implementation class RegistrazioneServlet
+ */
+public class RegistrazioneServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public RegistrazioneServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String stringMatricola = request.getParameter("matricola");
+
+		String nome = request.getParameter("nome");
+
+		String cognome = request.getParameter("cognome");
+
+		Integer matricola = null;
+
+		if (stringMatricola == null || "".equals(stringMatricola)) {
+
+			errors.put("error_matricola", "Campo matricola non può essere vuoto");
+
+		} else {
+
+			try {
+
+				matricola = Integer.parseInt(stringMatricola);
+
+			} catch (NumberFormatException nfe) {
+
+				errors.put("error_matricola", "Campo matricola deve essere un numero");
+
+			}
+
+		}
+
+		if (nome == null || "".equals(nome)) {
+
+			errors.put("error_nome", "Campo nome non può essere vuoto");
+
+		}
+
+		if (cognome == null || "".equals(cognome)) {
+
+			errors.put("error_cognome", "Campo cognome non può essere vuoto");
+
+		}
+
+		if (errors.isEmpty()) {
+
+			Studente studente = new Studente();
+
+			studente.setMatricola(matricola);
+
+			studente.setNome(nome);
+
+			studente.setCognome(cognome);
+
+			DAOStudente daoStudente = new DAOStudenteImpl();
+
+			try {
+
+				daoStudente.save(studente);
+
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("registrazioneSuccesso.jsp");
+
+				requestDispatcher.forward(request, response);
+
+			} catch (DAOException e) {
+
+				System.out.println(e.getMessage());
+
+				response.sendRedirect("error.jsp");
+
+			}
+
+		} else {
+
+			for (Entry<String, String> entry : errors.entrySet()) {
+
+				request.setAttribute(entry.getKey(), entry.getValue());
+
+			}
+
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("registrazione.jsp");
+
+			requestDispatcher.forward(request, response);
+
+		}
+
+	}
+
+}
