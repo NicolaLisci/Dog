@@ -10,7 +10,7 @@ private String username;
 private String password;
 private String indirizzo;
 private String nTelefono;
-private boolean verificato;
+private int verificato;
 private String eMail;
 
 
@@ -62,10 +62,10 @@ public String getnTelefono() {
 public void setnTelefono(String nTelefono) {
 	this.nTelefono = nTelefono;
 }
-public boolean isVerificato() {
+public int isVerificato() {
 	return verificato;
 }
-public void setVerificato(boolean verificato) {
+public void setVerificato(int verificato) {
 	this.verificato = verificato;
 }
 public String geteMail() {
@@ -82,7 +82,7 @@ public String toString() {
 			+ ", verificato=" + verificato + ", eMail=" + eMail + ", toString()=" + super.toString() + "]";
 }
 public Utente(int id, String nome, String cognome, String sesso, String username, String password, String indirizzo,
-		String nTelefono, boolean verificato, String eMail) {
+		String nTelefono, int verificato, String eMail) {
 	super();
 	this.id = id;
 	this.nome = nome;
