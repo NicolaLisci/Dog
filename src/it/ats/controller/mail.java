@@ -1,4 +1,4 @@
-public class SendEmail estende HttpServlet {
+﻿public class SendEmail estende HttpServlet {
     
   pubblico doGet void (richiesta HttpServletRequest,
                     HttpServletResponse risposta)
@@ -11,8 +11,7 @@ public class SendEmail estende HttpServlet {
       String da = "web@gmail.com";
  
       // Diciamo che si invia host di posta elettronica String = "localhost" dall'host locale;
- 
-      // Ottenere le proprietà di sistema proprietà = System.getProperties ();
+ 	// Ottenere le proprietà di sistema proprietà = System.getProperties ();
  
       // Impostare un properties.setProperty server di posta ( "mail.smtp.host", ospite);
  
