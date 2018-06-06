@@ -8,7 +8,7 @@
 </head>
 <body>
 	<form action="registrazione" method="POST">
-		<input type="text" id="utente" name="utente" placeholder="Nome utente" />
+		<input type="text" id="username" name="username" placeholder="Nome utente" />
 		<br>
 		<input type="text" id="nome" name="nome" placeholder="Nome" />
 		<br>

@@ -1,14 +1,14 @@
 ﻿package it.ats.controllo;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import it.ats.modello.Utente;
 
 
 /**
@@ -32,53 +32,31 @@ public class Registrazione extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String stringMatricola = request.getParameter("matricola");
-
+		String username = request.getParameter("username");
 		String nome = request.getParameter("nome");
-
 		String cognome = request.getParameter("cognome");
+		String sesso = request.getParameter("gender");
+		String email = request.getParameter("email");
+		String nascita =  request.getParameter("nascita");
+		
+		System.out.println("user: "+ username);
+		System.out.println("nome: "+ nome);
+		System.out.println("cognome: "+ cognome);
+		System.out.println("sesso: "+ sesso);
+		System.out.println("email: "+ email);
+		System.out.println("nascita:" +nascita);
+		
+		Utente utente = new Utente();
+		utente.setUsername(username);
+		utente.setNome(nome);
+		utente.setCognome(cognome);
+		utente.setSesso(sesso);
+		utente.seteMail(email);
+		
+		
+	//	utente.setNascita(nascita);
+	
 
-		Integer matricola = null;
-
-//		if (stringMatricola == null || "".equals(stringMatricola)) {
-//
-//			errors.put("error_matricola", "Campo matricola non può essere vuoto");
-//
-//		} else {
-//
-//			try {
-//
-//				matricola = Integer.parseInt(stringMatricola);
-//
-//			} catch (NumberFormatException nfe) {
-//
-//				errors.put("error_matricola", "Campo matricola deve essere un numero");
-//
-//			}
-//
-//		}
-//
-//		if (nome == null || "".equals(nome)) {
-//
-//			errors.put("error_nome", "Campo nome non può essere vuoto");
-//
-//		}
-//
-//		if (cognome == null || "".equals(cognome)) {
-//
-//			errors.put("error_cognome", "Campo cognome non può essere vuoto");
-//
-//		}
-//
-//		if (errors.isEmpty()) {
-//
-//			Studente studente = new Studente();
-//
-//			studente.setMatricola(matricola);
-//
-//			studente.setNome(nome);
-//
-//			studente.setCognome(cognome);
 //
 //			DAOStudente daoStudente = new DAOStudenteImpl();
 //
