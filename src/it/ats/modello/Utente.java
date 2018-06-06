@@ -7,11 +7,19 @@ private String nome;
 private String cognome;
 private String sesso;
 private String username;
+private String password;
 private String indirizzo;
 private String nTelefono;
 private boolean verificato;
 private String eMail;
 
+
+public String getPassword() {
+	return password;
+}
+public void setPassword(String password) {
+	this.password = password;
+}
 public int getId() {
 	return id;
 }
@@ -66,24 +74,26 @@ public String geteMail() {
 public void seteMail(String eMail) {
 	this.eMail = eMail;
 }
-public Utente(int id, String nome, String cognome, String sesso, String username, String indirizzo, String nTelefono,
-		boolean verificato, String eMail) {
+
+@Override
+public String toString() {
+	return "Utente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", sesso=" + sesso + ", username="
+			+ username + ", password=" + password + ", indirizzo=" + indirizzo + ", nTelefono=" + nTelefono
+			+ ", verificato=" + verificato + ", eMail=" + eMail + ", toString()=" + super.toString() + "]";
+}
+public Utente(int id, String nome, String cognome, String sesso, String username, String password, String indirizzo,
+		String nTelefono, boolean verificato, String eMail) {
 	super();
 	this.id = id;
 	this.nome = nome;
 	this.cognome = cognome;
 	this.sesso = sesso;
 	this.username = username;
+	this.password = password;
 	this.indirizzo = indirizzo;
 	this.nTelefono = nTelefono;
 	this.verificato = verificato;
 	this.eMail = eMail;
-}
-@Override
-public String toString() {
-	return "Utente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", sesso=" + sesso + ", username="
-			+ username + ", indirizzo=" + indirizzo + ", nTelefono=" + nTelefono + ", verificato=" + verificato
-			+ ", eMail=" + eMail + ", toString()=" + super.toString() + "]";
 }
 public Utente() {
 	super();
