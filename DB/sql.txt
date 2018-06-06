@@ -10,6 +10,7 @@ CREATE TABLE utente (
     sesso        VARCHAR2(10) NOT NULL,
     username     VARCHAR2(10) NOT NULL,
     password     VARCHAR2(40) NOT NULL,
+     citta       VARCHAR2(10) NOT NULL,
     indirizzo    VARCHAR2(10) NOT NULL,
     verificato   NUMBER(3) NOT NULL,
     mail         VARCHAR2(10) UNIQUE NOT NULL
