@@ -9,10 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import it.ats.modello.Studente;
-import it.ats.persistenza.DAOException;
-import it.ats.persistenza.DAOStudente;
-import it.ats.persistenza.impl.DAOStudenteImpl;
+
 
 /**
  * Servlet implementation class RegistrazioneServlet
