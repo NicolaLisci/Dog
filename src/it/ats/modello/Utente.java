@@ -12,13 +12,22 @@ private String indirizzo;
 private String nTelefono;
 private int verificato;
 private String eMail;
+private String pathFoto;
 
-
-public String getPassword() {
-	return password;
-}
-public void setPassword(String password) {
+public Utente(int id, String nome, String cognome, String sesso, String username, String password, String indirizzo,
+		String nTelefono, int verificato, String eMail, String pathFoto) {
+	super();
+	this.id = id;
+	this.nome = nome;
+	this.cognome = cognome;
+	this.sesso = sesso;
+	this.username = username;
 	this.password = password;
+	this.indirizzo = indirizzo;
+	this.nTelefono = nTelefono;
+	this.verificato = verificato;
+	this.eMail = eMail;
+	this.pathFoto = pathFoto;
 }
 public int getId() {
 	return id;
@@ -50,6 +59,12 @@ public String getUsername() {
 public void setUsername(String username) {
 	this.username = username;
 }
+public String getPassword() {
+	return password;
+}
+public void setPassword(String password) {
+	this.password = password;
+}
 public String getIndirizzo() {
 	return indirizzo;
 }
@@ -62,7 +77,7 @@ public String getnTelefono() {
 public void setnTelefono(String nTelefono) {
 	this.nTelefono = nTelefono;
 }
-public int isVerificato() {
+public int getVerificato() {
 	return verificato;
 }
 public void setVerificato(int verificato) {
@@ -74,31 +89,21 @@ public String geteMail() {
 public void seteMail(String eMail) {
 	this.eMail = eMail;
 }
-
-
+public String getPathFoto() {
+	return pathFoto;
+}
+public void setPathFoto(String pathFoto) {
+	this.pathFoto = pathFoto;
+}
+@Override
 public String toString() {
 	return "Utente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", sesso=" + sesso + ", username="
 			+ username + ", password=" + password + ", indirizzo=" + indirizzo + ", nTelefono=" + nTelefono
-			+ ", verificato=" + verificato + ", eMail=" + eMail + ", toString()=" + super.toString() + "]";
+			+ ", verificato=" + verificato + ", eMail=" + eMail + ", pathFoto=" + pathFoto + ", toString()="
+			+ super.toString() + "]";
 }
-public Utente(int id, String nome, String cognome, String sesso, String username, String password, String indirizzo,
-		String nTelefono, int verificato, String eMail) {
-	super();
-	this.id = id;
-	this.nome = nome;
-	this.cognome = cognome;
-	this.sesso = sesso;
-	this.username = username;
-	this.password = password;
-	this.indirizzo = indirizzo;
-	this.nTelefono = nTelefono;
-	this.verificato = verificato;
-	this.eMail = eMail;
-}
-public Utente() {
-	super();
-	
-}
+
+
 
 	
 }
