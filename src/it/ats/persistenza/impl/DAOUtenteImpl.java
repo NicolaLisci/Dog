@@ -15,7 +15,7 @@ public class DAOUtenteImpl implements DAOUtente{
 	public void save(Utente utente) throws DAOException {
 		
 		String insert = "INSERT INTO UTENTE VALUES(ID_UTENTE_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,";
-		String data = "TO_DATE('?','dd/mm/yyyy');";
+		String data = "TO_DATE(?,'dd/mm/yyyy'))";
 		String sql = insert + data;
 		System.out.println(sql);
 		//INSERT INTO UTENTE VALUES (ID_UTENTE_SEQ.NEXTVAL,'NICOLA','LISCI','UOMO','NICOLALISCI','PASSWORD','CAGLIARI','N','VIA BELLINI 6',1,'LISCINICOLA@LIVE.IT','3463178172',TO_DATE('22/12/1990', 'dd/mm/yyyy'));
@@ -24,18 +24,18 @@ public class DAOUtenteImpl implements DAOUtente{
 		PreparedStatement prepareStatement = null;
 		
 //		ID_UTENTE
-//		NOME
-//		COGNOME
-//		SESSO
-//		USERNAME
-//		PASSWORD
-//		CITTA
-//		UTENTE_IMMAGINE
-//		INDIRIZZO
-//		VERIFICATO
-//		MAIL
-//		NUMERO_TELEFONO
-//		DATA_NASCITA 13
+//	1	NOME
+//	2	COGNOME
+//	3	SESSO
+//	4	USERNAME
+//	5	PASSWORD
+//	6	CITTA
+//	7	UTENTE_IMMAGINE
+//	8	INDIRIZZO
+//	9	VERIFICATO
+//	10	MAIL
+//	11	NUMERO_TELEFONO
+//	12	DATA_NASCITA 
 		
 
 		
@@ -54,18 +54,19 @@ public class DAOUtenteImpl implements DAOUtente{
 			prepareStatement.setInt(9, utente.getVerificato());
 			prepareStatement.setString(10, utente.geteMail());
 			prepareStatement.setString(11, utente.getnTelefono());
+			prepareStatement.setString(12, utente.getDataNascita());
 			
 			prepareStatement.executeUpdate();
 
 			ResultSet generatedKeys = prepareStatement.getGeneratedKeys();
 
-//			if (generatedKeys != null && generatedKeys.next()) {
-//
-//				int id = generatedKeys.getInt(1);
-//
-//				studente.setId(id);
-//
-//			}
+			if (generatedKeys != null && generatedKeys.next()) {
+
+				int id = generatedKeys.getInt(1);
+
+				utente.setId(id);
+
+			}
 
 		} catch (SQLException ex) {
 
