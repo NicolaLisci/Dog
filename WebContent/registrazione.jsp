@@ -7,7 +7,7 @@
 <title>Registrazione</title>
 </head>
 <body>
-	<form action="registrazione" method="POST">
+	<form action="Registrazione" method="POST">
 		<input type="text" id="username" name="username" placeholder="Nome utente" />
 		<br>
 		<input type="text" id="nome" name="nome" placeholder="Nome" />
