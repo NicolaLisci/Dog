@@ -17,19 +17,21 @@ import it.ats.persistenza.impl.DAOUtenteImpl;
  */
 public class Registrazione extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Registrazione() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public Registrazione() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -46,6 +48,11 @@ public class Registrazione extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String nascita =  request.getParameter("nascita");
+		String indirizzo = "indirizzo";
+		String telefono = "telefono";
+		String foto = "foto";
+		int verifica = 0;
+		String citta = "citta";
 		
 		System.out.println("user: "+ username);
 		System.out.println("nome: "+ nome);
@@ -54,6 +61,12 @@ public class Registrazione extends HttpServlet {
 		System.out.println("email: "+ email);
 		System.out.println("password: "+ password);
 		System.out.println("nascita:" +nascita);
+		System.out.println("indirizzo: "+ indirizzo);
+		System.out.println("telefono: " + telefono);
+		System.out.println("foto: "+ foto);
+		System.out.println("verifica: " + verifica);
+		System.out.println("citta: "+ citta);
+		
 		
 		Utente utente = new Utente();
 		utente.setUsername(username);
@@ -63,15 +76,13 @@ public class Registrazione extends HttpServlet {
 		utente.seteMail(email);
 		utente.setPassword(password);
 		utente.setDataNascita(nascita);
-		
-		String indirizzo="indirizzo";
 		utente.setIndirizzo(indirizzo);
-		String telefono="telefono";
 		utente.setnTelefono(telefono);
-		String foto="foto";
 		utente.setPathFoto(foto);
-		int verifica=0;
 		utente.setVerificato(verifica);
+		utente.setCitta(citta);
+		
+		System.out.println(utente.toString());
 		
 		
 		

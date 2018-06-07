@@ -117,9 +117,9 @@ public void setDataNascita(String nascita) {
 @Override
 public String toString() {
 	return "Utente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", sesso=" + sesso + ", username="
-			+ username + ", password=" + password + ", indirizzo=" + indirizzo + ", nTelefono=" + nTelefono
-			+ ", verificato=" + verificato + ", eMail=" + eMail + ", pathFoto=" + pathFoto + ", toString()="
-			+ super.toString() + "]";
+			+ username + ", password=" + password + ", indirizzo=" + indirizzo + ", citta=" + citta + ", nTelefono="
+			+ nTelefono + ", verificato=" + verificato + ", eMail=" + eMail + ", pathFoto=" + pathFoto
+			+ ", dataNascita=" + dataNascita + "]";
 }
 
 
