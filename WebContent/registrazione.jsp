@@ -7,7 +7,7 @@
 <title>Registrazione</title>
 </head>
 <body>
-	<form action="registrazione" method="POST">
+	<form action="Registrazione" method="POST">
 		<input type="text" id="username" name="username" placeholder="Nome utente" />
 		<br>
 		<input type="text" id="nome" name="nome" placeholder="Nome" />
@@ -19,6 +19,8 @@
 		<input type="radio" name="gender" value="other"> Altro
 		<br>
 		<input type="text" id="email" name="email" placeholder="Email" />
+		<br>
+		<input type="password" id="password" name="password" placeholder="Password" />
 		<br>
 		<label for="nascita">Data di nascita: </label>
 		<input type="date" name="nascita">
