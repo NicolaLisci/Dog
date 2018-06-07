@@ -1,4 +1,4 @@
---versione 1.5 (07/06/2018)
+--versione 1.6 (07/06/2018)
 
 CREATE TABLE ruolo (
     id_ruolo   NUMBER PRIMARY KEY NOT NULL,
@@ -13,6 +13,7 @@ CREATE TABLE utente (
     username     VARCHAR2(40) NOT NULL,
     password     VARCHAR2(40) NOT NULL,
      citta       VARCHAR2(40) NOT NULL,
+    utente_immagine    VARCHAR2(40) ,
     indirizzo    VARCHAR2(40) NOT NULL,
     verificato   NUMBER(3) NOT NULL,
     mail         VARCHAR2(40) UNIQUE NOT NULL,
@@ -32,19 +33,7 @@ CREATE TABLE razze (
     razza      VARCHAR2(40) NOT NULL
 );
 
-CREATE TABLE cane (
-    id_cane        NUMBER PRIMARY KEY NOT NULL,
-    taglia         VARCHAR2(40) NOT NULL,
-    chip           VARCHAR2(40),
-    sesso          VARCHAR2(40) NOT NULL,
-    pelo          VARCHAR2(40) NOT NULL,
-    data_nascita   DATE NOT NULL,
-    pedegree       NUMBER(3) NOT NULL,
-    id_utente      NUMBER
-        REFERENCES utente ( id_utente ),
-    id_razza       NUMBER
-        REFERENCES razza ( id_razza )
-);
+
 
 CREATE TABLE tipo_attivita (
     id_attivita   NUMBER PRIMARY KEY NOT NULL,
@@ -56,4 +45,18 @@ CREATE TABLE dog_friendly (
     razza         VARCHAR2(40) UNIQUE NOT NULL,
     id_attivita   NUMBER
         REFERENCES tipo_attivita ( id_attivita )
+);
+CREATE TABLE cane (
+    id_cane        NUMBER PRIMARY KEY NOT NULL,
+    taglia         VARCHAR2(40) NOT NULL,
+    chip           VARCHAR2(40),
+    sesso          VARCHAR2(40) NOT NULL,
+    cane_immagine    VARCHAR2(40) ,
+    pelo          VARCHAR2(40) NOT NULL,
+    data_nascita   DATE NOT NULL,
+    pedegree       NUMBER(3) NOT NULL,
+    id_utente      NUMBER
+        REFERENCES utente ( id_utente ),
+    id_razza       NUMBER
+        REFERENCES razze ( id_razza )
 );
