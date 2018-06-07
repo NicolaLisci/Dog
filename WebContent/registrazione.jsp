@@ -20,6 +20,8 @@
 		<br>
 		<input type="text" id="email" name="email" placeholder="Email" />
 		<br>
+		<input type="password" id="password" name="password" placeholder="Password" />
+		<br>
 		<label for="nascita">Data di nascita: </label>
 		<input type="date" name="nascita">
 		<input type="submit" value="REGISTRATI"/>

@@ -9,13 +9,9 @@ import java.sql.Statement;
 public class DataSource {
 
 	private static DataSource instance;
-
 	private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
-
 	private static final String URL = "jdbc:oracle:thin:@172.22.178.255:1521:xe";
-
 	private static final String USERNAME = "martino";
-
 	private static final String PASSWORD = "martino";
 
 	private DataSource() {

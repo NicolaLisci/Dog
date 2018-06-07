@@ -1,5 +1,7 @@
 package it.ats.modello;
 
+import java.util.Date;
+
 public class Utente {
  
 private int id;
@@ -9,13 +11,14 @@ private String sesso;
 private String username;
 private String password;
 private String indirizzo;
+private String citta;
 private String nTelefono;
 private int verificato;
 private String eMail;
 private String pathFoto;
+private String dataNascita;
 
-public Utente(int id, String nome, String cognome, String sesso, String username, String password, String indirizzo,
-		String nTelefono, int verificato, String eMail, String pathFoto) {
+public Utente() {
 	super();
 	this.id = id;
 	this.nome = nome;
@@ -24,10 +27,12 @@ public Utente(int id, String nome, String cognome, String sesso, String username
 	this.username = username;
 	this.password = password;
 	this.indirizzo = indirizzo;
+	this.citta=citta;
 	this.nTelefono = nTelefono;
 	this.verificato = verificato;
 	this.eMail = eMail;
 	this.pathFoto = pathFoto;
+	this.dataNascita=dataNascita;
 }
 public int getId() {
 	return id;
@@ -71,6 +76,12 @@ public String getIndirizzo() {
 public void setIndirizzo(String indirizzo) {
 	this.indirizzo = indirizzo;
 }
+public String getCitta() {
+	return citta;
+}
+public void setCitta(String citta) {
+	this.citta = citta;
+}
 public String getnTelefono() {
 	return nTelefono;
 }
@@ -95,6 +106,14 @@ public String getPathFoto() {
 public void setPathFoto(String pathFoto) {
 	this.pathFoto = pathFoto;
 }
+public String getDataNascita() {
+	return dataNascita;
+}
+public void setDataNascita(String nascita) {
+	this.dataNascita = nascita;
+}
+
+
 @Override
 public String toString() {
 	return "Utente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", sesso=" + sesso + ", username="
@@ -102,6 +121,8 @@ public String toString() {
 			+ ", verificato=" + verificato + ", eMail=" + eMail + ", pathFoto=" + pathFoto + ", toString()="
 			+ super.toString() + "]";
 }
+
+
 
 
 
