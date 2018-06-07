@@ -1,4 +1,4 @@
---versione 1.4 (06/06/2018)
+--versione 1.5 (07/06/2018)
 
 CREATE TABLE ruolo (
     id_ruolo   NUMBER PRIMARY KEY NOT NULL,
@@ -37,6 +37,7 @@ CREATE TABLE cane (
     taglia         VARCHAR2(40) NOT NULL,
     chip           VARCHAR2(40),
     sesso          VARCHAR2(40) NOT NULL,
+    pelo          VARCHAR2(40) NOT NULL,
     data_nascita   DATE NOT NULL,
     pedegree       NUMBER(3) NOT NULL,
     id_utente      NUMBER
