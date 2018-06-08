@@ -54,6 +54,8 @@ public class Registrazione extends HttpServlet {
 		int verifica = 0;
 		String citta = "citta";
 		
+		
+		
 		System.out.println("user: "+ username);
 		System.out.println("nome: "+ nome);
 		System.out.println("cognome: "+ cognome);
@@ -104,9 +106,9 @@ public class Registrazione extends HttpServlet {
 
 		}
 
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("registrazione.jsp");
+		//RequestDispatcher requestDispatcher = request.getRequestDispatcher("registrazione.jsp");
 
-		requestDispatcher.forward(request, response);
+	//	requestDispatcher.forward(request, response);
 
 		
 		
