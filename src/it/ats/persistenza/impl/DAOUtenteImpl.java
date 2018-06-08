@@ -39,6 +39,8 @@ public class DAOUtenteImpl implements DAOUtente{
 		
 
 		
+
+		
 		try {
 			connection = instance.getConnection();
 			prepareStatement = connection.prepareStatement(sql, new String[] { "ID_UTENTE" });
@@ -69,7 +71,7 @@ public class DAOUtenteImpl implements DAOUtente{
 			}
 
 		} catch (SQLException ex) {
-
+			System.out.println("qua");
 			System.out.println(ex.getMessage());
 
 			throw new DAOException(ex.getMessage(), ex);
