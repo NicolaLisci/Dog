@@ -24,8 +24,7 @@ function validateEmail(email) {
 		<input type="radio" name="gender" value="female"> Femmina<br>
 		<input type="radio" name="gender" value="other"> Altro
 		<br>
-		<input type="text" id="email" name="email" placeholder="Email" required/>
-		<% validate %>
+		<input type="text" id="email" name="email" placeholder="Email" onblur="validateEmail(this);" required/>
 		<br>
 		<input type="password" id="password" name="password" placeholder="Password" required/>
 		<br>
