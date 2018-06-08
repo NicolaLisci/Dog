@@ -89,9 +89,101 @@ public class DAOUtenteImpl implements DAOUtente{
 		
 	}
 
+
 	public List<Utente> findAll() throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+String sql = "SELECT * FROM UTENTE";
+		List<Utente> listaUtenti = new ArrayList<Utente>();
+		DataSource instance = DataSource.getInstance();
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try {
+			connection = instance.getConnection();
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(sql);
+			while (resultSet.next()) {
+				int id = resultSet.getInt("ID_UTENTE");
+				String nome = resultSet.getString("NOME");
+				String cognome = resultSet.getString("COGNOME");
+				String sesso = resultSet.getString("SESSO");
+				String user = resultSet.getString("USERNAME");
+				String password = resultSet.getString("PASSWORD");
+				String citta=resultSet.getString("CITTA");
+				String immagine=resultSet.getString("UTENTE_IMMAGINE");
+				String indirizzo = resultSet.getString("INDIRIZZO");
+				int verificato=resultSet.getInt("VERIFICATO");
+				String mail = resultSet.getString("MAIL");
+				String nTel = resultSet.getString("NUMERO_TELEFONO");
+				Date dataNascita=resultSet.getDate("DATA_NASCITA");
+
+				Utente utente = new Utente();
+				utente.setId(id);
+				utente.setNome(nome);
+				utente.setSesso(sesso);
+				utente.setUsername(user);
+				utente.setPassword(password);
+				utente.setCitta(citta);
+				utente.setPathFoto(immagine);
+				utente.setIndirizzo(indirizzo);
+				utente.setVerificato(verificato);
+				utente.seteMail(mail);
+				utente.setnTelefono(nTel);
+				utente.setDataNascita(dataNascita);
+				
+				listaUtenti.add(utente);
+
+			}
+
+		} catch (SQLException e) {
+			throw new DAOException(e.getMessage(), e);
+
+		} finally {
+
+			instance.close(resultSet);
+
+			instance.close(statement);
+
+			instance.close(connection);
+
+		}
+
+		return listaUtenti;
+
 	}
 
+
+public boolean findByUserPass(String user, String pass) throws DAOException {
+		String sql = "SELECT * FROM UTENTE WHERE USERNAME=? AND PASSWORD=?";
+		DataSource instance = DataSource.getInstance();
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		try {
+			connection = instance.getConnection();
+			statement = connection.prepareStatement(sql);
+			statement.setString(1, user);
+			statement.setString(2, pass);
+			resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				return true;
+			}
+
+		} catch (SQLException ex) {
+
+			System.out.println(ex.getMessage());
+
+			throw new DAOException(ex.getMessage(), ex);
+			
+		} finally {
+
+			instance.close(resultSet);
+
+			instance.close(statement);
+
+			instance.close(connection);
+
+		}
+
+		return false;
+		}
 }
