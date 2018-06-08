@@ -30,7 +30,10 @@ function validateEmail(email) {
 		<br>
 		<label for="nascita">Data di nascita: (dd/mm/yyyy) </label>
 		<input type="date" name="nascita" required>
+		
+	
 		<input type="submit" value="REGISTRATI"/>
+		
 	</form>
 </body>
 </html>
