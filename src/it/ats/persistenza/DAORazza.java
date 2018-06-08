@@ -1,8 +1,9 @@
 package it.ats.persistenza;
 
 import java.util.List;
+import it.ats.modello.Razza;
 
-import it.ats.modello.Studente;
+
 
 public interface DAORazza {
 	void save(Razza razza) throws DAOException;

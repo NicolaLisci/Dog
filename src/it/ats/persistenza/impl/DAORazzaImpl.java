@@ -1,4 +1,4 @@
-package it.ats.persistenzaImpl;
+package it.ats.persistenza.impl;
 
 public class DAORazzaImpl {
 

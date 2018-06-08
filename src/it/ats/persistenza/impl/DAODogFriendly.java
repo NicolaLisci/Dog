@@ -1,4 +1,4 @@
-package it.ats.persistenzaImpl;
+package it.ats.persistenza.impl;
 import java.sql.Connection;
 	import java.sql.PreparedStatement;
 	import java.sql.ResultSet;
@@ -7,10 +7,14 @@ import java.sql.Connection;
 	import java.util.ArrayList;
 	import java.util.List;
 
+import it.ats.modello.Razza;
+import it.ats.persistenza.DAOException;
+import it.ats.persistenza.DAORazza;
+import it.ats.persistenza.DataSource;
+
 public class DAODogFriendly implements DAORazza{
 	
 
-		@Override
 		public List<Razza> findAll() throws DAOException {
 
 			List<Razza> listRazza = new ArrayList<Razza>();
@@ -75,6 +79,16 @@ public class DAODogFriendly implements DAORazza{
 
 			return listRazza;
 
+		}
+
+		public void save(Razza razza) throws DAOException {
+			// TODO Auto-generated method stub
+			
+		}
+
+		public void delete(Razza razza) throws DAOException {
+			// TODO Auto-generated method stub
+			
 		}
 
 
