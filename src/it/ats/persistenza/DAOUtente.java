@@ -12,6 +12,6 @@ public interface DAOUtente {
 
 	List<Utente> findAll() throws DAOException;
 
-
+	boolean findByUserPass(String user,String pass) throws DAOException;
 }
 
