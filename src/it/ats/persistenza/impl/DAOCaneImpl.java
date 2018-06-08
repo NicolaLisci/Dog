@@ -1,4 +1,4 @@
-package it.ats.persistenzaImpl;
+package it.ats.persistenza.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
