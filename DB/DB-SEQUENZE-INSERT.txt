@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 --versione 1.6 (07/06/2018)
 
 CREATE TABLE ruolo (

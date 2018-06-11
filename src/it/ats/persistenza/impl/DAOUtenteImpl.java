@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import it.ats.modello.Utente;
 import it.ats.persistenza.DAOException;
@@ -69,7 +70,7 @@ public class DAOUtenteImpl implements DAOUtente{
 			}
 
 		} catch (SQLException ex) {
-
+			System.out.println("qua");
 			System.out.println(ex.getMessage());
 
 			throw new DAOException(ex.getMessage(), ex);
@@ -91,6 +92,51 @@ public class DAOUtenteImpl implements DAOUtente{
 
 	public List<Utente> findAll() throws DAOException {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Utente findUtente(String username, String email) throws DAOException {
+		String select1 = "SELECT * FROM UTENTE WHERE USERNAME = ";
+		+ username + 
+		String select2 = " AND MAIL = "
+		+ email + " ";
+		
+		String query  = select1 + username + 
+		System.out.println(sql); 
+		
+		DataSource instance = DataSource.getInstance();
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try {
+
+			connection = instance.getConnection();
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(sql);
+
+			while (resultSet.first()) {
+				
+	
+			}
+
+		} catch (SQLException ex) {
+
+			System.out.println(ex.getMessage());
+
+			throw new DAOException(ex.getMessage(), ex);
+
+		} finally {
+
+			instance.close(resultSet);
+
+			instance.close(statement);
+
+			instance.close(connection);
+
+		}
+
+		
+		}
 		return null;
 	}
 
