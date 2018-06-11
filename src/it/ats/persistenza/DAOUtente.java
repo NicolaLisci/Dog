@@ -11,6 +11,6 @@ public interface DAOUtente {
 	void delete(Utente utente) throws DAOException;
 	List<Utente> findAll() throws DAOException;
 
-
+	boolean findByUserPass(String user,String pass) throws DAOException;
 }
 

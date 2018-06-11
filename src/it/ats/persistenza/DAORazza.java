@@ -6,10 +6,9 @@ import it.ats.modello.Razza;
 
 
 public interface DAORazza {
-	void save(Razza razza) throws DAOException;
-
-	void delete(Razza razza) throws DAOException;
-
+	
 	List<Razza> findAll() throws DAOException;
-
+	List<Razza> findId(int IdRazza) throws DAOException;
+	List<Razza> findRazza(String razza) throws DAOException;
+	
 }
