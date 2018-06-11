@@ -17,7 +17,8 @@ CREATE TABLE utente (
     indirizzo    VARCHAR2(40) NOT NULL,
     verificato   NUMBER(3) NOT NULL,
     mail         VARCHAR2(40) UNIQUE NOT NULL,
-     numero_telefono         NUMBER  UNIQUE NOT NULL
+    numero_telefono         NUMBER  UNIQUE NOT NULL,
+data_nascita DATE UNIQUE NOT NULL
 );
 
 CREATE TABLE utente_ruolo (

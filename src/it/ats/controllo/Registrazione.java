@@ -93,7 +93,7 @@ public class Registrazione extends HttpServlet {
 		DAOUtente daoUtente = new DAOUtenteImpl();
 
 		try {
-
+			
 			daoUtente.save(utente);
 			System.out.println("caricamento fatto");
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("registrazioneSuccesso.jsp");
