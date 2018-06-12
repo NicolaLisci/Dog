@@ -13,7 +13,10 @@ import it.ats.persistenza.DataSource;
 public class DAOCaneImpl implements DAOCane {
 
 	public void salva(Cane cane) throws DAOException {
-		String sql = "INSERT INTO CANE VALUES (ID_CANE_SEQ.nextval,?,?,?,?,?,?,?,?,?) ";
+		
+		String insert = "INSERT INTO CANE VALUES(ID_CANE_SEQ.NEXTVAL,?,?,?,?,?,";
+		String data = "TO_DATE(?,'dd/mm/yyyy'),?,?,?)";
+		String sql = insert + data;
 		DataSource instance = DataSource.getInstance();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
