@@ -34,8 +34,8 @@
 								<form id="Login-form" action="Login" method="post" role="form"
 									style="display: block;">
 									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1"
-											class="form-control" placeholder="Username" value="">
+										<input type="mail" name="email" id="email" tabindex="1"
+											class="form-control" placeholder="Email" value="">
 									</div>
 									<div class="form-group">
 										<input type="password" name="password" id="password"
@@ -64,7 +64,7 @@
 								<form id="Registrazione-form" action="Registrazione" method="post"
 									role="form" style="display: none;">
 									<div class="form-group">
-										<input type="text" name="nome utente" id="nome utente"
+										<input type="text" name="username" id="username"
 											tabindex="1" class="form-control" placeholder="Nome utente"
 											value="">
 									</div>
@@ -81,15 +81,15 @@
 									<label for="gender" class="cols-sm-2 control-label">Sesso  </label>
 									<div class=".radio-inline">
  									<label>
- 									<input type="radio" name="maschio">Maschio</label>
+ 									<input type="radio" name="gender" value="maschio">Maschio</label>
 									</div>
 									<div class=".radio-inline">
  									<label>
- 									<input type="radio" name="femmina">Femmina</label>
+ 									<input type="radio" name="gender" value="femmina">Femmina</label>
 									</div>
 									<div class=".radio-inline">
   									<label>
-  									<input type="radio" name="altro">Altro</label>
+  									<input type="radio" name="gender" value="altro">Altro</label>
 									</div>
 									<div class="form-group">
 										<input type="email" name="email" id="email" tabindex="1"
@@ -105,7 +105,7 @@
 											placeholder="Conferma Password">
 									</div>
 									<div class="form-group">
-										<input type="data" name="data nascita" id="data nascita"
+										<input type="data" name="nascita" id="nascita"
 											tabindex="1" class="form-control" placeholder="Data Nascita"
 											value="">
 									</div>
