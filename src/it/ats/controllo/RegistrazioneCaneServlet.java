@@ -41,34 +41,33 @@ public class RegistrazioneCaneServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	String nome = request.getParameter("nome");
+	
+		//DA COMPLETARE
 	String taglia = request.getParameter("taglia");
 	String chip = request.getParameter("chip");
 	String sesso = request.getParameter("gender");
-	String pelo = request.getParameter("pelo");
-	String dataNascita = request.getParameter("dataNascita");
-	String pedegree = request.getParameter("pedegree");
-	
-	Cane cane = new Cane();
-	cane.setNome(nome);
-	cane.setTaglia(taglia);
-	cane.setSesso(sesso);
-	cane.setChip(chip);
-	cane.setPelo(pelo);
-	cane.setDataNascita("14/Nov/00");
-	cane.setPedegree(pedegree);
-	cane.setIdCane(1);
-	cane.setIdRazza(1);
 
+	String dataNascita = request.getParameter("nascita");
+	
+
+	Cane cane = new Cane();
+
+	cane.setIdUtente(2);
+	cane.setIdRazza(2);
+	cane.setTaglia(taglia);
+	cane.setChip(chip);
+	cane.setSesso(sesso);
+	cane.setPelo("lungo");
+	cane.setDataNascita(dataNascita);
+	cane.setPedegree(1);
+	
 	
 	DAOCane daoCane = new DAOCaneImpl();
 	
 	try {
 	daoCane.salva(cane);
 	System.out.println("Registrazione avvenuta con successo");
-	RequestDispatcher requestDispatcher = request.getRequestDispatcher("RegistrazioneCane.jsp");
-	requestDispatcher.forward(request, response);
-		
+
 		
 	} catch (DAOException e) {
 		System.out.println(e.getMessage());
