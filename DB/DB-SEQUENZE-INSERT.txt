@@ -1,5 +1,9 @@
+<<<<<<< HEAD
+--versione 1.6 (07/06/2018)
+=======
 
 --versione 1.7 (08/06/2018)
+>>>>>>> branch 'master' of https://github.com/NicolaLisci/Woof.git
 
 CREATE TABLE ruolo (
     id_ruolo   NUMBER PRIMARY KEY NOT NULL,
