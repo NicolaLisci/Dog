@@ -9,6 +9,11 @@
 
 
 	<a href="registrazione.jsp">Non sei ancora registrato?</a>
+	<br>
+	<a href="login.jsp">Accedi</a>
+	<br>
+
+
 	
 
 </body>

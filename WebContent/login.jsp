@@ -7,24 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="LoginServlet" method="POST">
+<form action="Login" method="POST">
 		
 		
-		<input type="text" id="username" name="username" placeholder="Username" required/>
-
-		<br>
-		<br>
-
-		<input type="password" id="password" name="password" placeholder="Password" required/>
-		
-		<br>
-		<br>
-		
+		<input type="text" id="username" name="username" placeholder="Username" required/><br>
+		<input type="password" id="password" name="password" placeholder="Password" required/><br>
 		<input type="submit" value="LOGIN"/>
 		
 	</form>
 </body>
 </html>
-
-
 
