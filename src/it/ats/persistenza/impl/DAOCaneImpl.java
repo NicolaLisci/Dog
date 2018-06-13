@@ -162,5 +162,57 @@ public class DAOCaneImpl implements DAOCane {
 
 		}
 
+	}public Cane findIdUtente(int id_cane) throws DAOException {
+
+		String sql = "SELECT * FROM CANE WHERE ID_UTENTE = ?";
+		DataSource instance = DataSource.getInstance();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		try {
+			connection = instance.getConnection();
+			preparedStatement = connection.prepareStatement(sql, new String[] { "ID_CANE" });
+			preparedStatement.setInt(1, id_cane);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				int id = resultSet.getInt(1);
+				String taglia = resultSet.getString(2);
+				String chip = resultSet.getString(3);
+				String sesso = resultSet.getString(4);
+				String pathImmagine = resultSet.getString(5);
+				String pelo = resultSet.getString(6);
+				Date dataNascita = resultSet.getDate(7);
+				int pedegree = resultSet.getInt(8);
+				int idUtente = resultSet.getInt(9);
+				int idRazza = resultSet.getInt(10);
+
+				Cane cane = new Cane();
+
+				cane.setIdCane(id);
+				cane.setTaglia(taglia);
+				cane.setChip(chip);
+				cane.setSesso(sesso);
+				cane.setPathFoto(pathImmagine);
+				cane.setPelo(pelo);
+				cane.setDataNascita(dataNascita.toString());
+				cane.setPedegree(pedegree);
+				cane.setIdUtente(idUtente);
+				cane.setIdRazza(idRazza);
+
+				return cane;
+
+			}
+
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+			throw new DAOException(e.getMessage(), e);
+
+		} finally {
+			instance.close(preparedStatement);
+			instance.close(connection);
+
+		}
+		return null;
 	}
 }

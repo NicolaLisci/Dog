@@ -10,6 +10,7 @@ public interface DAOUtente {
 	Utente findUtente (String username, String email) throws DAOException;
 	void delete(Utente utente) throws DAOException;
 	List<Utente> findAll() throws DAOException;
+	void updateVerificato(String mail,int id) throws DAOException;
 
 	boolean findByUserPass(String user,String pass) throws DAOException;
 }
