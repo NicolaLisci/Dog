@@ -33,43 +33,56 @@ public class RegistrazioneCaneServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+			
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		//DA COMPLETARE
+
+		
+
 	String taglia = request.getParameter("taglia");
 	String chip = request.getParameter("chip");
 	String sesso = request.getParameter("gender");
 
 	String dataNascita = request.getParameter("nascita");
-	
+    int pedegree=Integer.parseInt(request.getParameter("pedegree"));
+	String pelo=request.getParameter("pelo");
+	String nome=request.getParameter("nome");
 
 	Cane cane = new Cane();
 
-	cane.setIdUtente(2);
-	cane.setIdRazza(2);
+	
 	cane.setTaglia(taglia);
 	cane.setChip(chip);
 	cane.setSesso(sesso);
-	cane.setPelo("lungo");
+	cane.setPathFoto("foto");
+	cane.setPelo(pelo);
 	cane.setDataNascita(dataNascita);
-	cane.setPedegree(1);
+	cane.setPedegree(pedegree);
+	cane.setIdUtente(3); 
+	cane.setIdRazza(3);
+	cane.setNome(nome);
 	
+	
+
+	
+	
+
 	
 	DAOCane daoCane = new DAOCaneImpl();
 	
-	try {
+ try {
 	daoCane.salva(cane);
 	System.out.println("Registrazione avvenuta con successo");
 
 		
 	} catch (DAOException e) {
+		System.out.println("errore servlet");
 		System.out.println(e.getMessage());
 	}
 	

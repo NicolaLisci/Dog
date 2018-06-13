@@ -1,4 +1,4 @@
-package it.ats.persistenzaImpl;
+package it.ats.persistenza.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,15 +14,13 @@ public class DAOCaneImpl implements DAOCane {
 
 	public void salva(Cane cane) throws DAOException {
 		
-		
-		String insert = "INSERT INTO CANE VALUES(ID_CANE_SEQ.NEXTVAL,?,?,?,?,?,";
-		String data = "TO_DATE(?,'dd/mm/yyyy'),?,?,?)";
-		String sql = insert + data;
+		String sql = "INSERT INTO CANE VALUES(ID_CANE_SEQ.NEXTVAL,?,?,?,?,?,TO_DATE(?,'dd/mm/yyyy'),?,?,?,?)";
 
-		
+
 		DataSource instance = DataSource.getInstance();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+
 		try {
 			connection = instance.getConnection();
 			preparedStatement = connection.prepareStatement(sql, new String[] { "ID_CANE" });
@@ -35,6 +33,9 @@ public class DAOCaneImpl implements DAOCane {
 			preparedStatement.setInt(7, cane.getPedegree());
 			preparedStatement.setInt(8, cane.getIdUtente());
 			preparedStatement.setInt(9, cane.getIdRazza());
+			preparedStatement.setString(10, cane.getNome());
+
+
 			preparedStatement.executeUpdate();
 			ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
 			if (generatedKeys != null && generatedKeys.next()) {
@@ -43,6 +44,7 @@ public class DAOCaneImpl implements DAOCane {
 			}
 
 		} catch (Exception e) {
+
 			System.out.println(e.getMessage());
 			throw new DAOException(e.getMessage(), e);
 		} finally {
