@@ -4,12 +4,13 @@ import java.util.Date;
 
 public class Cane {
 
+	private String nome;
 	private String taglia;
 	private int idCane;
 	private String chip;
 	private String sesso;
-	private Date dataNascita;
-	private int pedigree;
+	private String dataNascita;
+	private int pedegree;
 	private int idUtente;
 	private int idRazza;
 	private String pathFoto;
@@ -22,15 +23,23 @@ public class Cane {
 	public void setPelo(String pelo) {
 		this.pelo = pelo;
 	}
-	public Cane(String taglia, int idCane, String chip, String sesso, Date dataNascita, int pedigree, int idUtente,
-			int idRazza, String pathFoto, String pelo) {
+	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public Cane(String nome, String taglia, int idCane, String chip, String sesso, String dataNascita, int pedegree,
+			int idUtente, int idRazza, String pathFoto, String pelo) {
 		super();
+		this.nome = nome;
 		this.taglia = taglia;
 		this.idCane = idCane;
 		this.chip = chip;
 		this.sesso = sesso;
 		this.dataNascita = dataNascita;
-		this.pedigree = pedigree;
+		this.pedegree = pedegree;
 		this.idUtente = idUtente;
 		this.idRazza = idRazza;
 		this.pathFoto = pathFoto;
@@ -64,17 +73,17 @@ public class Cane {
 	public void setSesso(String sesso) {
 		this.sesso = sesso;
 	}
-	public Date getDataNascita() {
+	public String getDataNascita() {
 		return dataNascita;
 	}
-	public void setDataNascita(Date dataNascita) {
+	public void setDataNascita(String dataNascita) {
 		this.dataNascita = dataNascita;
 	}
-	public int getPedigree() {
-		return pedigree;
+	public int getPedegree() {
+		return pedegree;
 	}
-	public void setPedigree(int pedigree) {
-		this.pedigree = pedigree;
+	public void setPedegree(int pedegree) {
+		this.pedegree = pedegree;
 	}
 	public int getIdUtente() {
 		return idUtente;
@@ -96,10 +105,11 @@ public class Cane {
 	}
 	@Override
 	public String toString() {
-		return "Cane [taglia=" + taglia + ", idCane=" + idCane + ", chip=" + chip + ", sesso=" + sesso
-				+ ", dataNascita=" + dataNascita + ", pedigree=" + pedigree + ", idUtente=" + idUtente + ", idRazza="
-				+ idRazza + ", pathFoto=" + pathFoto + ", pelo=" + pelo + ", toString()=" + super.toString() + "]";
+		return "Cane [nome=" + nome + ", taglia=" + taglia + ", idCane=" + idCane + ", chip=" + chip + ", sesso="
+				+ sesso + ", dataNascita=" + dataNascita + ", pedegree=" + pedegree + ", idUtente=" + idUtente
+				+ ", idRazza=" + idRazza + ", pathFoto=" + pathFoto + ", pelo=" + pelo;
 	}
+
 	
 	
 
