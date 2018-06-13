@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.ats.modello.Cane;
 import it.ats.persistenza.DAOCane;
 import it.ats.persistenza.DAOException;
-import it.ats.persistenzaImpl.DAOCaneImpl;
+import it.ats.persistenza.impl.DAOCaneImpl;
 
 /**
  * Servlet implementation class RegistrazioneCaneServlet

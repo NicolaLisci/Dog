@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.ats.modello.Utente;
 import it.ats.persistenza.DAOException;
 import it.ats.persistenza.DAOUtente;
-import it.ats.persistenzaImpl.DAOUtenteImpl;
+import it.ats.persistenza.impl.DAOUtenteImpl;
 
 @WebServlet("/Registrazione")
 public class Registrazione extends HttpServlet {
