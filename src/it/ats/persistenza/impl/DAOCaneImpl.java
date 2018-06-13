@@ -1,4 +1,4 @@
-package it.ats.persistenza.impl;
+package it.ats.persistenzaImpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,9 +14,12 @@ public class DAOCaneImpl implements DAOCane {
 
 	public void salva(Cane cane) throws DAOException {
 		
+		
 		String insert = "INSERT INTO CANE VALUES(ID_CANE_SEQ.NEXTVAL,?,?,?,?,?,";
 		String data = "TO_DATE(?,'dd/mm/yyyy'),?,?,?)";
 		String sql = insert + data;
+
+		
 		DataSource instance = DataSource.getInstance();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -28,8 +31,8 @@ public class DAOCaneImpl implements DAOCane {
 			preparedStatement.setString(3, cane.getSesso());
 			preparedStatement.setString(4, cane.getPathFoto());
 			preparedStatement.setString(5, cane.getPelo());
-			preparedStatement.setDate(6, (java.sql.Date) cane.getDataNascita());
-			preparedStatement.setInt(7, cane.getPedigree());
+			preparedStatement.setString(6,cane.getDataNascita());
+			preparedStatement.setInt(7, cane.getPedegree());
 			preparedStatement.setInt(8, cane.getIdUtente());
 			preparedStatement.setInt(9, cane.getIdRazza());
 			preparedStatement.executeUpdate();
@@ -58,7 +61,7 @@ public class DAOCaneImpl implements DAOCane {
 			connection = instance.getConnection();
 			preparedStatement = connection.prepareStatement(sql, new String[] { "ID_CANE" });
 			preparedStatement.setInt(1, id_cane);
-
+			preparedStatement.executeUpdate();
 		} catch (Exception e) {
 
 			System.out.println(e.getMessage());
@@ -103,8 +106,8 @@ public class DAOCaneImpl implements DAOCane {
 				cane.setSesso(sesso);
 				cane.setPathFoto(pathImmagine);
 				cane.setPelo(pelo);
-				cane.setDataNascita(dataNascita);
-				cane.setPedigree(pedegree);
+				cane.setDataNascita(dataNascita.toString());
+				cane.setPedegree(pedegree);
 				cane.setIdUtente(idUtente);
 				cane.setIdRazza(idRazza);
 
@@ -127,7 +130,7 @@ public class DAOCaneImpl implements DAOCane {
 
 	public void aggiorna(Cane cane) throws DAOException {
 
-		String sql = "UPDATE CANE SET TAGLIA=?, CHIP=?, SESSO=?, CANE_IMMAGINE=?, PELO=?, DATA_NASCITA=?,"
+		String sql = "UPDATE CANE SET TAGLIA=?, CHIP=?, SESSO=?, CANE_IMMAGINE=?, PELO=?, DATA_NASCITA=TO_DATE(?,'dd/mm/yyyy'),"
 				+ "PEDEGREE=?, ID_UTENTE=?, ID_RAZZA=? WHERE ID_CANE=?";
 
 		DataSource instance = DataSource.getInstance();
@@ -141,8 +144,8 @@ public class DAOCaneImpl implements DAOCane {
 			preparedStatement.setString(3, cane.getSesso());
 			preparedStatement.setString(4, cane.getPathFoto());
 			preparedStatement.setString(5, cane.getPelo());
-			preparedStatement.setDate(6, (java.sql.Date) cane.getDataNascita());
-			preparedStatement.setInt(7, cane.getPedigree());
+			preparedStatement.setString(6, cane.getDataNascita());
+			preparedStatement.setInt(7, cane.getPedegree());
 			preparedStatement.setInt(8, cane.getIdUtente());
 			preparedStatement.setInt(9, cane.getIdRazza());
 			preparedStatement.setInt(10, cane.getIdCane());
