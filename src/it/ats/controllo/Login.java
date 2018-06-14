@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import it.ats.modello.Utente;
 import it.ats.persistenza.DAOException;
@@ -30,12 +31,34 @@ public class Login extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String username = request.getParameter("username");
+		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		System.out.println(email);
+		System.out.println(password);
 		DAOUtente daoUtente = new DAOUtenteImpl();
 		try {
-			int utenteExists = daoUtente.findByUserPass(username, password);
-			if (utenteExists != -1) {
+			Utente utente = daoUtente.findUtente(email, password);
+			System.out.println("utente:"+utente);
+			
+			if (utente.getId()!=0) {
+				HttpSession session=request.getSession();  
+
+				session.setAttribute("utente", utente);
+//				session.setAttribute("id_utente",utente.getId());  
+//		        session.setAttribute("nome",utente.getNome());  
+//		        session.setAttribute("cognome",utente.getCognome());  
+//		        session.setAttribute("sesso",utente.getSesso());  
+//		        session.setAttribute("username",utente.getUsername());  
+//		        session.setAttribute("password",utente.getPassword());  
+//		        session.setAttribute("citta",utente.getCitta());  
+//		        session.setAttribute("foto",utente.getPathFoto());  
+//		        session.setAttribute("indirizzo",utente.getIndirizzo());  
+//		        session.setAttribute("verificato",utente.getVerificato());  
+//		        session.setAttribute("mail",utente.geteMail());  
+//		        session.setAttribute("telefono",utente.getnTelefono());  
+//		        session.setAttribute("nascita",utente.getDataNascita());  
+		        
+		    
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
 				requestDispatcher.forward(request, response);
 			} else {
