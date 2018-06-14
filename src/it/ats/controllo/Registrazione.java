@@ -76,19 +76,15 @@ public class Registrazione extends HttpServlet {
 		utente.setVerificato(verifica);
 		utente.setCitta(citta);
 		
-//		System.out.println(utente.toString());
-		
-		
-		
-		
-		
+
 		DAOUtente daoUtente = new DAOUtenteImpl();
 
 		try {
 
 			daoUtente.save(utente);
 //			System.out.println("caricamento fatto");
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
+			request.setAttribute("utente", utente);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("MailRegistrazione");
 			requestDispatcher.forward(request, response);
 
 		} catch (DAOException e) {

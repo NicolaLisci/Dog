@@ -12,7 +12,7 @@
 	
 	<form action="MailRegistrazione" method="POST">
 	<input type="hidden" name="mail" value="${utente.geteMail()}">
-	<input type="hidden" name="mail" value="${utente.getUsername()}">
+	<input type="hidden" name="user" value="${utente.getUsername()}">
 	<input type="submit" name="invia" value="Reinvia Mail">
 	</form>
 	

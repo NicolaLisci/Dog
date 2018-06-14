@@ -12,6 +12,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +21,7 @@ import it.ats.modello.Utente;
 /**
  * Servlet implementation class MailRegistrazione
  */
+@WebServlet("/MailRegistrazione")
 public class MailRegistrazione extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,19 +37,18 @@ public class MailRegistrazione extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		 
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		Utente utente = (Utente) request.getAttribute("utente");
 		String username = "";
 		String destinatario = "";
-		//System.out.println("utente mail1:"+utente);
+		System.out.println("utente mail1:"+utente);
 		
 		if(utente==null)
 		{
@@ -124,10 +125,12 @@ public class MailRegistrazione extends HttpServlet {
 				}
 	      }
 	      
-	  	RequestDispatcher requestDispatcher = request.getRequestDispatcher("Login_RegistrazioneUtenti.jsp");
+	  	RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
 
 	  	requestDispatcher.forward(request, response);
 
+	
 	}
 
 }
+
