@@ -77,8 +77,7 @@ public class DAOCaneImpl implements DAOCane {
 	}
 
 	public Cane vediTutto(int id_cane) throws DAOException {
-
-		String sql = "SELECT * FROM CANE WHERE ID_CANE = ?";
+String sql = "SELECT * FROM CANE WHERE ID_CANE = ?";
 		DataSource instance = DataSource.getInstance();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -95,10 +94,11 @@ public class DAOCaneImpl implements DAOCane {
 				String sesso = resultSet.getString(4);
 				String pathImmagine = resultSet.getString(5);
 				String pelo = resultSet.getString(6);
-				Date dataNascita = resultSet.getDate(7);
+				String dataNascita = resultSet.getString(7);
 				int pedegree = resultSet.getInt(8);
 				int idUtente = resultSet.getInt(9);
 				int idRazza = resultSet.getInt(10);
+				String nome=resultSet.getString(11);
 
 				Cane cane = new Cane();
 
@@ -108,7 +108,7 @@ public class DAOCaneImpl implements DAOCane {
 				cane.setSesso(sesso);
 				cane.setPathFoto(pathImmagine);
 				cane.setPelo(pelo);
-				cane.setDataNascita(dataNascita.toString());
+				cane.setDataNascita(dataNascita);
 				cane.setPedegree(pedegree);
 				cane.setIdUtente(idUtente);
 				cane.setIdRazza(idRazza);
@@ -128,6 +128,7 @@ public class DAOCaneImpl implements DAOCane {
 
 		}
 		return null;
+		
 	}
 
 	public void aggiorna(Cane cane) throws DAOException {
