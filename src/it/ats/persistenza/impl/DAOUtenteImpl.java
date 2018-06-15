@@ -89,8 +89,26 @@ public class DAOUtenteImpl implements DAOUtente {
 
 	}
 
-	public void delete(Utente utente) throws DAOException {
-		// TODO Auto-generated method stub
+	public void delete(int id) throws DAOException {
+		String sql = "DELETE FROM UTENTE WHERE ID_UTETNE = ? ";
+		DataSource instance = DataSource.getInstance();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		try {
+			connection = instance.getConnection();
+			preparedStatement = connection.prepareStatement(sql, new String[] { "ID_UTENTE" });
+			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+			throw new DAOException(e.getMessage(), e);
+
+		} finally {
+			instance.close(preparedStatement);
+			instance.close(connection);
+
+		}
 
 	}
 
