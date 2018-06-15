@@ -2,6 +2,7 @@ package it.ats.persistenza;
 
 import java.util.List;
 
+
 import it.ats.modello.Utente;
 
 public interface DAOUtente {
@@ -11,7 +12,8 @@ public interface DAOUtente {
 	void delete(int id) throws DAOException;
 	List<Utente> findAll() throws DAOException;
 	void updateVerificato(String mail,int id) throws DAOException;
-
+	void aggiorna(Utente utente) throws DAOException;	
 	boolean findByUserPass(String user,String pass) throws DAOException;
+
 }
 

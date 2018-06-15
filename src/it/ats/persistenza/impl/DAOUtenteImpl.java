@@ -320,4 +320,37 @@ public class DAOUtenteImpl implements DAOUtente {
 		}
 	}
 
+	public void aggiorna(Utente utente) throws DAOException {
+		String sql = "UPDATE UTENTE SET NOME=?, COGNOME=?, SESSO=?, USERNAME=?, PASSWORD=?,CITTA=?,UTENTE_IMMAGINE=?,INDIRIZZO=?,MAIL=?,NUMERO_TELEFONO=?"
+				+ ",DATA_NASCITA=TO_DATE(?,'dd/mm/yyyy') WHERE ID_UTENTE=?";
+
+		DataSource instance = DataSource.getInstance();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		try {
+			connection = instance.getConnection();
+			preparedStatement = connection.prepareStatement(sql, new String[] { "ID_UTENTE" });
+			preparedStatement.setString(1, utente.getNome());
+			preparedStatement.setString(2, utente.getCognome());
+			preparedStatement.setString(3, utente.getSesso());
+			preparedStatement.setString(4, utente.getUsername());
+			preparedStatement.setString(5, utente.getPassword());
+			preparedStatement.setString(6, utente.getCitta());
+			preparedStatement.setString(7, utente.getPathFoto());
+			preparedStatement.setString(8, utente.getIndirizzo());
+			preparedStatement.setString(9, utente.getnTelefono());
+			preparedStatement.setString(10, utente.getDataNascita());
+			preparedStatement.setInt(11, utente.getId());
+			preparedStatement.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			instance.close(preparedStatement);
+			instance.close(connection);
+
+		}
+
+	}
 }
