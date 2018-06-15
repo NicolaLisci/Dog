@@ -1,0 +1,25 @@
+    <%@ page import="it.ats.persistenza.*"%>
+<%@	page import="it.ats.persistenza.impl.*"%>
+<%@ page import="it.ats.modello.*"%>
+<%@ page import="java.util.*"%> 
+
+
+
+280 CIRCA
+
+<%
+		DAOCane daocane=new DAOCaneImpl();
+		List<Cane> listaCani=new ArrayList<Cane>();
+		listaCani=daocane.elencoCani(1);
+		
+		
+		for(Cane cane: listaCani)
+		{
+			%>
+			<li>
+			<a href="profilo.jsp"><%=cane.getNome()%></a>
+            </li>
+		
+			<%
+		}
+	%>
