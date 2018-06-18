@@ -7,7 +7,7 @@
 <head>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script  src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
 <title></title>
 </head>
 <body>
@@ -34,11 +34,11 @@
 								<form id="Login-form" action="Login" method="post" role="form"
 									style="display: block;">
 									<div class="form-group">
-										<input type="email" name="email" id="email" tabindex="1"
+										<input type="mail" name="email" id="email" tabindex="1"
 											class="form-control" placeholder="Email" value="">
 									</div>
 									<div class="form-group">
-										<input type="password" name="password" id="password"
+										<input type="password" name="password" id="passwordLogin"
 											tabindex="2" class="form-control" placeholder="Password">
 									</div>
 									
@@ -78,15 +78,18 @@
 											class="form-control" placeholder="Cognome" value="">
 									</div>
 									<div class="form-group">
+									<label for="gender" class="cols-sm-2 control-label">Sesso</label>
 									<div class=".radio-inline">
-									<input type="radio" name="gender" value="maschio"> Maschio
+ 									<label>
+ 									<input type="radio" name="gender" value="maschio">	Maschio</label>
 									</div>
 									<div class=".radio-inline">
-									<input type="radio" name="gender" value="femmina"> Femmina
+ 									<label>
+ 									<input type="radio" name="gender" value="femmina">	Femmina</label>
 									</div>
 									<div class=".radio-inline">
-									<input type="radio" name="gender" value="altro"> Altro
-									</div>
+  									<label>
+  									<input type="radio" name="gender" value="altro">	Altro</label>
 									</div>
 									<div class="form-group">
 										<input type="email" name="email" id="email" tabindex="1"
@@ -96,9 +99,10 @@
 										<input type="password" name="password" id="password"
 											tabindex="2" class="form-control" placeholder="Password">
 									</div>
+									
 									<div class="form-group">
-										<input type="conferma password" name="conferma password"
-											id="conferma password" tabindex="2" class="form-control"
+										<input type="password" name="confermapassword"
+											id="confirm_password" tabindex="2" class="form-control"
 											placeholder="Conferma Password">
 									</div>
 									<div class="form-group">
@@ -122,14 +126,14 @@
 									</div>
 									<div class="form-group">
 										<div class="row">
-											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="registrati" id="registrati"
-													tabindex="4" class="form-control btn btn-register"
-													value="Registrati">
-											</div>
+											
 										</div>
 									</div>
 								</form>
+								<div class="col-sm-6 col-sm-offset-3">
+										
+												<button onclick="controlloPass() " 	tabindex="4" class="form-control btn btn-register">Registrati</button>
+											</div>
 							</div>
 						</div>
 					</div>
@@ -192,7 +196,7 @@ body {
 			$(this).addClass('active');
 			e.preventDefault();
 		});
-		$('#Registrazione-link').click(function(e) {
+	    $('#Registrazione-link').click(function(e) {
 			$("#Registrazione-form").delay(100).fadeIn(100);
 	 		$("#Login-form").fadeOut(100);
 			$('#Login-link').removeClass('active');
@@ -203,7 +207,23 @@ body {
 	});
 
 	</script>
+	<script>
+var password = document.getElementById("password");
+var confirm_password = document.getElementById("confirm_password");
 
+
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+</script>
 </body>
 </html>
 
