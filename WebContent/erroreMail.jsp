@@ -11,6 +11,7 @@
 	Impossibile inviare la mail al momento, riprova più tardi.
 	
 	<form action="MailRegistrazione" method="POST">
+	<input type="hidden" name="id" value="${utente.getId()}">
 	<input type="hidden" name="mail" value="${utente.geteMail()}">
 	<input type="hidden" name="user" value="${utente.getUsername()}">
 	<input type="submit" name="invia" value="Reinvia Mail">

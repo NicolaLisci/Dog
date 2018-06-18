@@ -17,7 +17,7 @@ import it.ats.persistenza.impl.DAOCaneImpl;
 /**
  * Servlet implementation class RegistrazioneCaneServlet
  */
-@WebServlet("/RegistrazioneCaneServlet")
+//@WebServlet("/RegistrazioneCaneServlet")
 public class RegistrazioneCaneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

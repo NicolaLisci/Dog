@@ -1,3 +1,4 @@
+<%@ page import = "it.ats.modello.*"  %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -17,7 +18,7 @@
     <link href="css/sb-admin-2.css" rel="stylesheet">
 	<!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+<style>.border_radius { border-radius: 10px 10px 10px 10px; }</style>
 </head>
 
 <body>
@@ -227,12 +228,12 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="profilo.jsp"><i class="fa fa-user fa-fw"></i>Profilo</a>
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i>Profilo</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i>Informazioni</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="/Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -327,16 +328,111 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">HOME</h1>
+                        <h1 class="page-header">PROFILO</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
             </div>
-            <!-- /.container-fluid -->
-          
+            <!-- /.container-fluid 
+            
+            nome:prova
+cognome:prova
+sesso:maschio
+username:prova
+passwrd:prova
+citta:prova
+foto:foto
+indirizzo:prova
+verificato:0
+mail:prova@gmail.com
+telefono:prova@gmail.com
+nascita:1234567890
+-->
+<% 
+Utente utente = new Utente();
+
+%>
+
+             <table class="table table-user-information">
+                    <tbody>
+                    <form action ="UpdateUtente" method="POST">
+                     <img alt="User Pic" width="100" height="100" src="https://www.cesvot.it/sites/default/files/default_images/no-utente_0_0.jpg" class="img-circle img-responsive" > 
+                      <br>
+                      <tr>
+                        <td>Foto profilo</td>
+                        <td><input type="text"  class="form-control" name="foto" value="<%= session.getAttribute("foto")%>"></td>
+                      </tr>
+                      <tr>
+                        <td>Username</td>
+                        <td><input type="text"  class="form-control" name="username" value="<%= session.getAttribute("username")%>"></td>
+                      </tr>
+                      <tr>
+                        <td>Nome</td>
+                        <td><input type="text" class="form-control"  name="nome" value="<%= session.getAttribute("nome")%>"></td>
+                      </tr>
+                      <tr>
+                        <td>Cognome</td>
+                        <td><input type="text" class="form-control"  name="cognome" value="<%= session.getAttribute("cognome")%>"></td>
+                      </tr>
+                   
+                      <tr>
+                      <td>Sesso</td>
+                      <td>
+                    	<div class="form-group">
+						<div class=".radio-inline">
+						<input type="radio" name="gender" value="maschio"> Maschio
+						</div>
+						<div class=".radio-inline">
+						<input type="radio" name="gender" value="femmina"> Femmina
+						</div>
+						<div class=".radio-inline">
+						<input type="radio" name="gender" value="altro"> Altro
+						</div>
+						</div>
+						</td>
+                      </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td><input type="email" class="form-control"  name="email" value="<%= session.getAttribute("mail")%>"></a></td>
+                      </tr>
+                       <tr>
+                        <td>Password</td>
+                        <td><input type="text" class="form-control"  name="password" value="<%= session.getAttribute("password")%>"></a></td>
+                      </tr>
+                      <tr>
+                      <td>Data di Nascita</td>
+                      <td>
+                      <input type="data" name="nascita" class="form-control" placeholder="(DD/MM/YYYY)" value="<%= session.getAttribute("nascita")%>">
+                      </td>
+                      </tr>
+                        <tr>
+                        <td>Indirizzo</td>
+                        <td><input type="text" class="form-control" name="indirizzo" value="<%= session.getAttribute("indirizzo")%>"></td>
+                      </tr>
+                      <tr>  
+                      <td>Telefono</td>
+                        <td><input type="text" class="form-control"  name="telefono" value="<%= session.getAttribute("telefono")%>"></td>
+                      </tr>
+                      <tr>
+                        <td>Città</td>
+                        <td><input type="text" class="form-control"  name="citta" value="<%= session.getAttribute("citta")%>"></td>
+                      </tr>
+                      <tr>
+                      <td>
+                      <input type="hidden" name="id" value="<%= session.getAttribute("citta")%>">
+                      <input type="submit" class="btn btn-success" value="Aggiorna">
+                      </td>
+                      </tr>
+                      </form>
+                    </tbody>
+                  </table>
+                  
         </div>
         <!-- /#page-wrapper -->
+
+        
+        
 
     </div>
     <!-- /#wrapper -->

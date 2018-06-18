@@ -16,7 +16,7 @@ import it.ats.persistenza.DAOException;
 import it.ats.persistenza.DAOUtente;
 import it.ats.persistenza.impl.DAOUtenteImpl;
 
-@WebServlet("/Login")
+//@WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -44,19 +44,19 @@ public class Login extends HttpServlet {
 				HttpSession session=request.getSession();  
 
 				session.setAttribute("utente", utente);
-//				session.setAttribute("id_utente",utente.getId());  
-//		        session.setAttribute("nome",utente.getNome());  
-//		        session.setAttribute("cognome",utente.getCognome());  
-//		        session.setAttribute("sesso",utente.getSesso());  
-//		        session.setAttribute("username",utente.getUsername());  
-//		        session.setAttribute("password",utente.getPassword());  
-//		        session.setAttribute("citta",utente.getCitta());  
-//		        session.setAttribute("foto",utente.getPathFoto());  
-//		        session.setAttribute("indirizzo",utente.getIndirizzo());  
-//		        session.setAttribute("verificato",utente.getVerificato());  
-//		        session.setAttribute("mail",utente.geteMail());  
-//		        session.setAttribute("telefono",utente.getnTelefono());  
-//		        session.setAttribute("nascita",utente.getDataNascita());  
+				session.setAttribute("id_utente",utente.getId());  
+		        session.setAttribute("nome",utente.getNome());  
+		        session.setAttribute("cognome",utente.getCognome());  
+		        session.setAttribute("sesso",utente.getSesso());  
+		        session.setAttribute("username",utente.getUsername());  
+		        session.setAttribute("password",utente.getPassword());  
+		        session.setAttribute("citta",utente.getCitta());  
+		        session.setAttribute("foto",utente.getPathFoto());  
+		        session.setAttribute("indirizzo",utente.getIndirizzo());  
+		        session.setAttribute("verificato",utente.getVerificato());  
+		        session.setAttribute("mail",utente.geteMail());  
+		        session.setAttribute("telefono",utente.getnTelefono());  
+		        session.setAttribute("nascita",utente.getDataNascita());  
 		        
 		    
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");

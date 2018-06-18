@@ -34,7 +34,7 @@
 								<form id="Login-form" action="Login" method="post" role="form"
 									style="display: block;">
 									<div class="form-group">
-										<input type="mail" name="email" id="email" tabindex="1"
+										<input type="email" name="email" id="email" tabindex="1"
 											class="form-control" placeholder="Email" value="">
 									</div>
 									<div class="form-group">
@@ -78,18 +78,15 @@
 											class="form-control" placeholder="Cognome" value="">
 									</div>
 									<div class="form-group">
-									<label for="gender" class="cols-sm-2 control-label">Sesso</label>
 									<div class=".radio-inline">
- 									<label>
- 									<input type="radio" name="gender" value="maschio">	Maschio</label>
+									<input type="radio" name="gender" value="maschio"> Maschio
 									</div>
 									<div class=".radio-inline">
- 									<label>
- 									<input type="radio" name="gender" value="femmina">	Femmina</label>
+									<input type="radio" name="gender" value="femmina"> Femmina
 									</div>
 									<div class=".radio-inline">
-  									<label>
-  									<input type="radio" name="gender" value="altro">	Altro</label>
+									<input type="radio" name="gender" value="altro"> Altro
+									</div>
 									</div>
 									<div class="form-group">
 										<input type="email" name="email" id="email" tabindex="1"

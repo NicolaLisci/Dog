@@ -21,7 +21,7 @@ import it.ats.modello.Utente;
 /**
  * Servlet implementation class MailRegistrazione
  */
-@WebServlet("/MailRegistrazione")
+//@WebServlet("/MailRegistrazione")
 public class MailRegistrazione extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -48,14 +48,18 @@ public class MailRegistrazione extends HttpServlet {
 		Utente utente = (Utente) request.getAttribute("utente");
 		String username = "";
 		String destinatario = "";
+		int id = 0;
 		System.out.println("utente mail1:"+utente);
 		
 		if(utente==null)
 		{
+			id = Integer.parseInt(request.getParameter("id"));
 			username = request.getParameter("user");
 			destinatario = request.getParameter("mail");	
+			
 		}else
 		{
+			id = utente.getId();
 			username = utente.getUsername();
 			destinatario = utente.geteMail();
 		}
@@ -64,7 +68,7 @@ public class MailRegistrazione extends HttpServlet {
 		System.out.println(username);
 		System.out.println(destinatario);
 		
-		
+		String link = "http://localhost:8081/Woof3/Verificato?id="+id;
 
 		final String mittente = "woofaccenture@gmail.com";
 		final String user = "woofaccenture@gmail.com";
@@ -105,7 +109,8 @@ public class MailRegistrazione extends HttpServlet {
 	         message.setSubject("Registrazione Woof");
 	       //  System.out.println(utente.getUsername());
 	         message.setText("Ciao "+username+".\n"
-	         		+ "Benvenuto su Woof, clicca sul link sottostante per completare la registrazione!" );
+	         		+ "Benvenuto su Woof, clicca sul link sottostante per completare la registrazione!"+".\n.\n"+
+	        		 link);
 	         
 	         Transport.send(message,user,password);
 //	         String title = "Send Email";
@@ -125,9 +130,9 @@ public class MailRegistrazione extends HttpServlet {
 				}
 	      }
 	      
-	  	RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
+	request.getRequestDispatcher("index.jsp").forward(request, response);
 
-	  	requestDispatcher.forward(request, response);
+	 
 
 	
 	}

@@ -1,3 +1,4 @@
+<%@ page import = "it.ats.modello.*"  %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -227,12 +228,12 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="profilo.jsp"><i class="fa fa-user fa-fw"></i>Profilo</a>
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i>Profilo</a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i>Informazioni</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="/Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -327,16 +328,83 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">HOME</h1>
+                        <h1 class="page-header">PROFILO</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
             </div>
-            <!-- /.container-fluid -->
-          
+            <!-- /.container-fluid 
+            
+            nome:prova
+cognome:prova
+sesso:maschio
+username:prova
+passwrd:prova
+citta:prova
+foto:foto
+indirizzo:prova
+verificato:0
+mail:prova@gmail.com
+telefono:prova@gmail.com
+nascita:1234567890
+-->
+<% 
+Utente utente = new Utente();
+
+%>
+
+             <table class="table table-user-information">
+                    <tbody>
+                     <img alt="User Pic" width="100" height="100" src="https://www.cesvot.it/sites/default/files/default_images/no-utente_0_0.jpg" class="img-circle img-responsive" > 
+                      <br>
+                      <tr>
+                        <td>Username:</td>
+                        <td><%= session.getAttribute("username")%></td>
+                      </tr>
+                      <tr>
+                        <td>Nome:</td>
+                        <td><%= session.getAttribute("nome") %></td>
+                      </tr>
+                      <tr>
+                        <td>Cognome</td>
+                        <td><%= session.getAttribute("cognome") %></td>
+                      </tr>
+                   
+                         <tr>
+                             <tr>
+                        <td>Sesso</td>
+                        <td><%= session.getAttribute("sesso") %></td>
+                      </tr>
+                        <tr>
+                        <td>Indirizzo</td>
+                        <td><%= session.getAttribute("indirizzo") %></td>
+                      </tr>
+                      <tr>
+                        <td>Città</td>
+                        <td><%= session.getAttribute("citta") %></td>
+                      </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td><a href="mailto:<%= session.getAttribute("mail") %>"><%= session.getAttribute("mail") %></a></td>
+                      </tr>
+                      <tr>  
+                      <td>Telefono</td>
+                        <td><%= session.getAttribute("telefono") %></td>
+                      </tr>
+                      <tr>
+                      <td></td>
+                      <td>
+                      <a href="modificaUtente.jsp" class="btn btn-warning">Modifica</a>
+                      <a href="rimuoviUtente.jsp" class="btn btn-danger">Rimuovi</a>
+                      </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  
         </div>
         <!-- /#page-wrapper -->
+        
 
     </div>
     <!-- /#wrapper -->

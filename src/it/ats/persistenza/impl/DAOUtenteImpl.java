@@ -22,27 +22,10 @@ public class DAOUtenteImpl implements DAOUtente {
 		String data = "TO_DATE(?,'dd/mm/yyyy'))";
 		String sql = insert + data;
 		System.out.println(sql);
-		// INSERT INTO UTENTE VALUES
-		// (ID_UTENTE_SEQ.NEXTVAL,'NICOLA','LISCI','UOMO','NICOLALISCI','PASSWORD','CAGLIARI','N','VIA
-		// BELLINI 6',1,'LISCINICOLA@LIVE.IT','3463178172',TO_DATE('22/12/1990',
-		// 'dd/mm/yyyy'));
 		DataSource instance = DataSource.getInstance();
 		Connection connection = null;
 		PreparedStatement prepareStatement = null;
 
-		// ID_UTENTE
-		// 1 NOME
-		// 2 COGNOME
-		// 3 SESSO
-		// 4 USERNAME
-		// 5 PASSWORD
-		// 6 CITTA
-		// 7 UTENTE_IMMAGINE
-		// 8 INDIRIZZO
-		// 9 VERIFICATO
-		// 10 MAIL
-		// 11 NUMERO_TELEFONO
-		// 12 DATA_NASCITA
 
 		try {
 			connection = instance.getConnection();
@@ -89,26 +72,8 @@ public class DAOUtenteImpl implements DAOUtente {
 
 	}
 
-	public void delete(int id) throws DAOException {
-		String sql = "DELETE FROM UTENTE WHERE ID_UTETNE = ? ";
-		DataSource instance = DataSource.getInstance();
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		try {
-			connection = instance.getConnection();
-			preparedStatement = connection.prepareStatement(sql, new String[] { "ID_UTENTE" });
-			preparedStatement.setInt(1, id);
-			preparedStatement.executeUpdate();
-		} catch (Exception e) {
-
-			System.out.println(e.getMessage());
-			throw new DAOException(e.getMessage(), e);
-
-		} finally {
-			instance.close(preparedStatement);
-			instance.close(connection);
-
-		}
+	public void delete(Utente utente) throws DAOException {
+		// TODO Auto-generated method stub
 
 	}
 
@@ -192,7 +157,7 @@ public class DAOUtenteImpl implements DAOUtente {
 			resultSet = statement.executeQuery(sql);
 
 			if (resultSet.next()) {
-				// System.out.println(resultSet);
+				System.out.println(resultSet);
 
 				int id_utente = resultSet.getInt(1);
 				String nome = resultSet.getString(2);
@@ -205,8 +170,8 @@ public class DAOUtenteImpl implements DAOUtente {
 				String indirizzo = resultSet.getString(9);
 				int verificato = resultSet.getInt(10);
 				String mail = resultSet.getString(11);
-				String telefono = resultSet.getString(11);
-				String nascita = resultSet.getString(12);
+				String telefono = resultSet.getString(12);
+				String nascita = resultSet.getString(13);
 
 				System.out.println("id_utente:" + id_utente);
 				System.out.println("nome:" + nome);
@@ -294,20 +259,18 @@ public class DAOUtenteImpl implements DAOUtente {
 
 	@Override
 	public void updateVerificato(String mail, int id) throws DAOException {
-		// UPDATE UTENTE
-		// SET VERIFICATO = 1
-		// WHERE MAIL = 'iop';
 
-		String sql = "UPDATE UTENTE SET VERIFICATO  = 1 WHERE MAIL = " + mail + "AND WHERE ID_UTENTE=" + id + "; ";
-
+		String sql = "UPDATE UTENTE SET VERIFICATO = ? WHERE ID_UTENTE = ?";
+		//System.out.println(sql);
+		
 		DataSource instance = DataSource.getInstance();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		try {
-
 			connection = instance.getConnection();
 			preparedStatement = connection.prepareStatement(sql, new String[] { "ID_UTENTE" });
-
+			preparedStatement.setString(1, "1");
+			preparedStatement.setString(2, String.valueOf(id));
 			preparedStatement.executeUpdate();
 
 		} catch (Exception e) {
@@ -318,12 +281,25 @@ public class DAOUtenteImpl implements DAOUtente {
 			instance.close(connection);
 
 		}
+		System.out.println("verificato qui");
 	}
 
 	public void aggiorna(Utente utente) throws DAOException {
-		String sql = "UPDATE UTENTE SET NOME=?, COGNOME=?, SESSO=?, USERNAME=?, PASSWORD=?,CITTA=?,UTENTE_IMMAGINE=?,INDIRIZZO=?,MAIL=?,NUMERO_TELEFONO=?"
-				+ ",DATA_NASCITA=TO_DATE(?,'dd/mm/yyyy') WHERE ID_UTENTE=?";
-
+		String sql = "UPDATE UTENTE SET NOME=?, COGNOME=?, SESSO=?, USERNAME=?, PASSWORD=?,CITTA=?,UTENTE_IMMAGINE=?, INDIRIZZO=?,MAIL=?,NUMERO_TELEFONO=?,DATA_NASCITA=TO_DATE(?,'dd/mm/yyyy') WHERE ID_UTENTE=?";
+		System.out.println("id:" +utente.getId());
+		System.out.println("nome:" +utente.getNome());
+		System.out.println("cognome:" +utente.getCognome());
+		System.out.println("sesso:" +utente.getSesso());
+		System.out.println("username:" +utente.getUsername());
+		System.out.println("passwrd:" +utente.getPassword());
+		System.out.println("citta:" +utente.getCitta());
+		System.out.println("foto:" +utente.getPathFoto());
+		System.out.println("indirizzo:" +utente.getIndirizzo());
+		System.out.println("verificato:" +utente.getVerificato());
+		System.out.println("mail:" +utente.geteMail());
+		System.out.println("telefono:" +utente.getnTelefono());
+		System.out.println("nascita:" +utente.getDataNascita());
+		
 		DataSource instance = DataSource.getInstance();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -338,11 +314,13 @@ public class DAOUtenteImpl implements DAOUtente {
 			preparedStatement.setString(6, utente.getCitta());
 			preparedStatement.setString(7, utente.getPathFoto());
 			preparedStatement.setString(8, utente.getIndirizzo());
-			preparedStatement.setString(9, utente.getnTelefono());
-			preparedStatement.setString(10, utente.getDataNascita());
-			preparedStatement.setInt(11, utente.getId());
+			preparedStatement.setString(9, utente.geteMail());
+			preparedStatement.setString(10, utente.getnTelefono());
+			preparedStatement.setString(11, utente.getDataNascita());
+			preparedStatement.setInt(12, utente.getId());
 			preparedStatement.executeUpdate();
-
+			System.out.println(preparedStatement.toString());
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			throw new DAOException(e.getMessage(), e);
@@ -351,6 +329,11 @@ public class DAOUtenteImpl implements DAOUtente {
 			instance.close(connection);
 
 		}
-
+		System.out.println("aggiornato qui");
 	}
+	
+
+	
+	
+	
 }
