@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import it.ats.modello.Utente;
 import it.ats.persistenza.DAOException;
 import it.ats.persistenza.DAOUtente;
+import it.ats.persistenza.DAOUtente_Ruolo;
 import it.ats.persistenza.impl.DAOUtenteImpl;
+import it.ats.persistenza.impl.DAOUtente_RuoloImpl;
 
 //@WebServlet("/Registrazione")
 public class Registrazione extends HttpServlet {
@@ -47,21 +49,6 @@ public class Registrazione extends HttpServlet {
 		String citta = request.getParameter("citta");
 		
 		
-		
-//		System.out.println("user: "+ username);
-//		System.out.println("nome: "+ nome);
-//		System.out.println("cognome: "+ cognome);
-//		System.out.println("sesso: "+ sesso);
-//		System.out.println("email: "+ email);
-//		System.out.println("password: "+ password);
-//		System.out.println("nascita:" +nascita);
-//		System.out.println("indirizzo: "+ indirizzo);
-//		System.out.println("telefono: " + telefono);
-//		System.out.println("foto: "+ foto);
-//		System.out.println("verifica: " + verifica);
-//		System.out.println("citta: "+ citta);
-		
-		
 		Utente utente = new Utente();
 		utente.setUsername(username);
 		utente.setNome(nome);
@@ -78,11 +65,13 @@ public class Registrazione extends HttpServlet {
 		
 
 		DAOUtente daoUtente = new DAOUtenteImpl();
-
+		DAOUtente_Ruolo utente_Ruolo = (DAOUtente_Ruolo) new DAOUtente_RuoloImpl();
 		try {
 
 			daoUtente.save(utente);
-//			System.out.println("caricamento fatto");
+			System.out.println("OK L UTENTE VA");
+			utente_Ruolo.save(utente.getId());
+			System.out.println("OK L UTENTE VA");
 			request.setAttribute("utente", utente);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("MailRegistrazione");
 			requestDispatcher.forward(request, response);
