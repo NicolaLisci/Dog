@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>LOGIN</title>
+<SCRIPT language="JavaScript">
+	function verifica() {
+
+		if ((document.forms['mioform']['username'].value == "")
+				|| (document.forms['mioform']['password'].value == "")) {
+			alert("Non puoi inserire dei campi vuoti");
+			return false;
+		} else {
+			return true;
+		}
+	}
+</SCRIPT>
+</head>
+<body bgcolor=MistyRose>
+	<FORM name="mioform" method="post" action="Servlet"
+		onSubmit="return verifica()">
+
+		<fieldset>
+
+			<h1 style="color: DarkMagenta;">
+				<B>Login</B>
+			</h1>
+
+			<h3 style="color: Crimson;">
+				<B>Username:</B> <input type=text name="username"
+					placeholder="Inserisci lo username"><br> <br> <B>Password:</B>
+				<input type="password" name="password"
+					placeholder="Inserisci la password"><br> <br>
+				<button type="submit">Login</button>
+				<input type="checkbox" name="Remember me" value="Remember me">
+				**Ricordami**<br> <br> <input type="submit" value="Cancel">
+
+				<br>
+				<br> <A HREF=> Password dimenticata? </A><BR> <BR> <A
+					HREF=> Registrati </A><BR>
+			</h3>
+		</fieldset>
+		</script>
+	</form>
+</body>
+</html>
