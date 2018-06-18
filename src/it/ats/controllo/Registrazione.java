@@ -1,6 +1,9 @@
 package it.ats.controllo;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Map.Entry;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -48,7 +51,24 @@ public class Registrazione extends HttpServlet {
 		int verifica = 0;
 		String citta = request.getParameter("citta");
 		
-		
+		String plaintext = password;
+		MessageDigest m = null;
+		try {
+			m = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		m.reset();
+		m.update(plaintext.getBytes());
+		byte[] digest = m.digest();
+		BigInteger bigInt = new BigInteger(1,digest);
+		String hashtext = bigInt.toString(16);
+		// Now we need to zero pad it if you actually want the full 32 chars.
+		while(hashtext.length() < 32 ){
+		  hashtext = "0"+hashtext;
+		}
+		password=hashtext;
 		Utente utente = new Utente();
 		utente.setUsername(username);
 		utente.setNome(nome);
@@ -63,7 +83,12 @@ public class Registrazione extends HttpServlet {
 		utente.setVerificato(verifica);
 		utente.setCitta(citta);
 		
-
+		
+		
+		
+		
+		
+		
 		DAOUtente daoUtente = new DAOUtenteImpl();
 		DAOUtente_Ruolo utente_Ruolo = (DAOUtente_Ruolo) new DAOUtente_RuoloImpl();
 		try {
