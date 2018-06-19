@@ -99,4 +99,13 @@
     <servlet-name>DiventaDogSitter</servlet-name>
     <url-pattern>/DiventaDogSitter</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <display-name>DiventaToelettatore</display-name>
+    <servlet-name>DiventaToelettatore</servlet-name>
+    <servlet-class>it.ats.controllo.DiventaToelettatore</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DiventaToelettatore</servlet-name>
+    <url-pattern>/DiventaToelettatore</url-pattern>
+  </servlet-mapping>
 </web-app>
