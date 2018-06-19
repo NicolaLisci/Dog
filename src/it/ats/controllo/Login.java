@@ -1,7 +1,12 @@
 package it.ats.controllo;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -41,6 +46,13 @@ public class Login extends HttpServlet {
 			System.out.println("utente:"+utente);
 			
 			if (utente.getId()!=0) {
+				
+				if(utente.getVerificato()==0)
+				{
+					RequestDispatcher requestDispatcher = request.getRequestDispatcher("verificatoError.jsp");
+					requestDispatcher.forward(request, response);
+				}else
+				{
 				HttpSession session=request.getSession();  
 
 				session.setAttribute("utente", utente);
@@ -56,14 +68,26 @@ public class Login extends HttpServlet {
 		        session.setAttribute("verificato",utente.getVerificato());  
 		        session.setAttribute("mail",utente.geteMail());  
 		        session.setAttribute("telefono",utente.getnTelefono());  
-		        session.setAttribute("nascita",utente.getDataNascita());  
 		        
-		    
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
+		        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+		        Date date = null;
+				try {
+					date = inputFormat.parse(utente.getDataNascita());
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+		        DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+		        String nascita = outputFormat.format(date);
+		        session.setAttribute("nascita",nascita);  
+		        
+		        RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
 				requestDispatcher.forward(request, response);
-			} else {
-				RequestDispatcher requestDispatcher = request.getRequestDispatcher("errore.jsp");
-				requestDispatcher.forward(request, response);
+				}
+				} else {
+					RequestDispatcher requestDispatcher = request.getRequestDispatcher("errore.jsp");
+					requestDispatcher.forward(request, response);
 			}
 		} catch (DAOException e) {
 			e.printStackTrace();
