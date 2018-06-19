@@ -297,7 +297,7 @@
                                     <a href="#">Cerca</a>
                                 </li>
                                 <li>
-                                    <a href="diventaDogSitter.jsp">Diventa Dogsitter</a>
+                                    <a href="/diventaDogSitter.jsp">Diventa Dogsitter</a>
                                 </li>
                                
                             </ul>
@@ -310,7 +310,7 @@
                                     <a class="active" href="blank.html">Cerca</a>
                                 </li>
                                 <li>
-                                <a href="diventaToelettatore.jsp">Diventa Toelettatore</a>
+                                    <a href="#">Diventa Toelettatore</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -327,13 +327,19 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">HOME</h1>
+                        <h1 class="page-header">Diventa Toelettatore</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
+            Vuoi davvero diventare Toelettatore?
+            <br>
+            Contatta l'amministratore per la candidattura!
+            <br><br>
+            <a href="DiventaToelettatore?id=<%= session.getAttribute("id")%>" class="btn btn-primary">Diventa Toelettatore</a>
+            
           
         </div>
         <!-- /#page-wrapper -->

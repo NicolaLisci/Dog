@@ -94,4 +94,55 @@ public class DAOUtente_RuoloImpl implements DAOUtente_Ruolo {
 		}
 
 	}
+	public Utente_Ruolo findUtente(int idUtente) throws DAOException {
+		String sql = "SELECT * FROM UTENTE_RUOLO WHERE ID_UTENTE = " + idUtente + "  ";
+		Utente_Ruolo utente_Ruolo = new Utente_Ruolo();
+		
+		System.out.println(sql);
+
+		DataSource instance = DataSource.getInstance();
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try {
+
+			connection = instance.getConnection();
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(sql);
+
+			if (resultSet.next()) {
+				System.out.println(resultSet);
+
+				int id_utente_ruolo = resultSet.getInt(1);
+				int id_utente = resultSet.getInt(2);
+				int id_ruolo = resultSet.getInt(3);
+				
+
+			
+
+				
+				utente_Ruolo.setId_Utente_Ruolo(id_utente_ruolo);
+				utente_Ruolo.setId_Utente(id_utente);
+				utente_Ruolo.setId_Ruolo(id_ruolo);
+				
+			}
+		} catch (SQLException ex) {
+
+			System.out.println(ex.getMessage());
+
+			throw new DAOException(ex.getMessage(), ex);
+
+		} finally {
+
+			instance.close(resultSet);
+
+			instance.close(statement);
+
+			instance.close(connection);
+
+		}
+		return utente_Ruolo;
+
+	
+}
 }
