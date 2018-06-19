@@ -1,6 +1,10 @@
 package it.ats.controllo;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import it.ats.modello.Utente;
 import it.ats.persistenza.DAOException;
@@ -17,7 +22,7 @@ import it.ats.persistenza.impl.DAOUtenteImpl;
 /**
  * Servlet implementation class UpdateUtente
  */
-@WebServlet("/UpdateUtente")
+//@WebServlet("/UpdateUtente")
 public class UpdateUtente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -41,7 +46,6 @@ public class UpdateUtente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		String foto = request.getParameter("foto");
@@ -86,16 +90,43 @@ public class UpdateUtente extends HttpServlet {
 		DAOUtente daoUtente = new DAOUtenteImpl();
 	
 		try {
+
+			HttpSession session=request.getSession();  
+			
 			daoUtente.aggiorna(utente);
 			System.out.println("aggiornato");
-		} catch (DAOException e) {
-			// TODO Auto-generated catch block
+			
+			session.setAttribute("utente", utente);
+			session.setAttribute("id_utente",utente.getId());  
+	        session.setAttribute("nome",utente.getNome());  
+	        session.setAttribute("cognome",utente.getCognome());  
+	        session.setAttribute("sesso",utente.getSesso());  
+	        session.setAttribute("username",utente.getUsername());  
+	        session.setAttribute("password",utente.getPassword());  
+	        session.setAttribute("citta",utente.getCitta());  
+	        session.setAttribute("foto",utente.getPathFoto());  
+	        session.setAttribute("indirizzo",utente.getIndirizzo());  
+	        session.setAttribute("verificato",utente.getVerificato());  
+	        session.setAttribute("mail",utente.geteMail());  
+	        session.setAttribute("telefono",utente.getnTelefono());  
+	        session.setAttribute("nascita",utente.getDataNascita());  
+	        
+
+	        
+	        RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
+			requestDispatcher.forward(request, response);
+			
+			
+
+			
+			
+		}
+		catch (DAOException e) {
 			e.printStackTrace();
 		}
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
-		requestDispatcher.forward(request, response);
-		
 		
 	}
-
 }
+
+
+
