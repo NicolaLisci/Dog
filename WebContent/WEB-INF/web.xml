@@ -108,4 +108,13 @@
     <servlet-name>DiventaToelettatore</servlet-name>
     <url-pattern>/DiventaToelettatore</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <display-name>EliminaCane</display-name>
+    <servlet-name>EliminaCane</servlet-name>
+    <servlet-class>it.ats.controllo.EliminaCane</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EliminaCane</servlet-name>
+    <url-pattern>/EliminaCane</url-pattern>
+  </servlet-mapping>
 </web-app>
