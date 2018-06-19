@@ -3,7 +3,10 @@ package it.ats.persistenza.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import it.ats.modello.Cane;
 import it.ats.persistenza.DAOCane;
@@ -162,7 +165,9 @@ public class DAOCaneImpl implements DAOCane {
 
 		}
 
-	}public Cane findIdUtente(int id_cane) throws DAOException {
+	}
+	
+	public Cane findIdUtente(int id_cane) throws DAOException {
 
 		String sql = "SELECT * FROM CANE WHERE ID_UTENTE = ?";
 		DataSource instance = DataSource.getInstance();
@@ -214,5 +219,65 @@ public class DAOCaneImpl implements DAOCane {
 
 		}
 		return null;
+	}
+
+	public List<Cane> elencoCani(int idUtente) throws DAOException {
+		String sql = "SELECT * FROM CANE WHERE ID_UTENTE=?";
+		List<Cane> listaCani = new ArrayList<Cane>();
+		DataSource instance = DataSource.getInstance();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		try {
+			connection = instance.getConnection();
+			preparedStatement = connection.prepareStatement(sql, new String[] { "ID_CANE" });
+			preparedStatement.setInt(1, idUtente);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				int id = resultSet.getInt("ID_CANE");
+				String taglia = resultSet.getString("TAGLIA");
+				String chip = resultSet.getString("CHIP");
+				String sesso = resultSet.getString("SESSO");
+				String foto = resultSet.getString("CANE_IMMAGINE");
+				String pelo = resultSet.getString("PELO");
+				String dataNascita = resultSet.getString("DATA_NASCITA");
+				int pedegree = resultSet.getInt("PEDEGREE");
+				idUtente = resultSet.getInt("ID_UTENTE");
+				int idRazza = resultSet.getInt("ID_RAZZA");
+				String nome = resultSet.getString("NOME");
+
+				Cane cane=new Cane();
+				
+				cane.setIdCane(id);
+				cane.setTaglia(taglia);
+				cane.setChip(chip);
+				cane.setSesso(sesso);
+				cane.setPathFoto(foto);
+				cane.setPelo(pelo);
+				cane.setDataNascita(dataNascita);
+				cane.setPedegree(pedegree);
+				cane.setIdUtente(idUtente);
+				cane.setIdRazza(idRazza);
+				cane.setNome(nome);
+				
+				listaCani.add(cane);
+
+			}
+
+		} catch (SQLException e) {
+			throw new DAOException(e.getMessage(), e);
+
+		} finally {
+
+			instance.close(resultSet);
+
+			instance.close(preparedStatement);
+
+			instance.close(connection);
+
+		}
+
+
+		return listaCani;
 	}
 }
