@@ -378,6 +378,33 @@ public class DAODogFriendlyImpl implements DAODogFriendly {
 			instance.close(connection);
 
 		}
+	}@Override
+	public void aggiorna(DogFriendly dogFriendly) throws DAOException {
+
+
+		String sql = "UPDATE DOGFRIENDLY SET NOMEATTIVITA=?, INDIRIZZO=?, ID_ATTIVITA=? WHERE ID_FRIENDLY=?";
+
+		DataSource instance = DataSource.getInstance();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		try {
+			connection = instance.getConnection();
+			preparedStatement = connection.prepareStatement(sql, new String[] { "ID_FRIENDLY" });
+			preparedStatement.setString(1, dogFriendly.getNomeAttivita());
+			preparedStatement.setString(2, dogFriendly.getIndirizzo());
+			preparedStatement.setInt(3, dogFriendly.getIdAttivita());
+			
+			preparedStatement.setInt(4, dogFriendly.getid_DogFriendly());
+			preparedStatement.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			throw new DAOException(e.getMessage(), e);
+		} finally {
+			instance.close(preparedStatement);
+			instance.close(connection);
+
+		}
 	}
 
 }

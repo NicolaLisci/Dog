@@ -13,6 +13,6 @@ public interface DAODogFriendly {
 	List<DogFriendly> findindirizzo(String indirizzo) throws DAOException;
 	 void elimina(int id_DogFriendly) throws DAOException ;
 	 void salva(DogFriendly dogFriendly) throws DAOException;
-		
+	 void aggiorna(DogFriendly dogFriendly) throws DAOException;
 }
 
