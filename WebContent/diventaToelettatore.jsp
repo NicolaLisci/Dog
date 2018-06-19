@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="it.ats.modello.*" %>
+<%@page import="it.ats.persistenza.*" %>
+<%@page import="it.ats.persistenza.impl.*" %>
+<%@page import="java.util.List" %>
+<%@page import="java.util.ArrayList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -228,9 +233,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="profilo.jsp"><i class="fa fa-user fa-fw"></i>Profilo</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i>Informazioni</a>
-                        </li>
+                       
                         <li class="divider"></li>
                         <li><a href="./Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
@@ -261,12 +264,23 @@
                         <li>
                             <a href="#">I miei cani<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Cane 1 </a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Cane 2</a>
-                                </li>
+                                <%
+                                  DAOCane daoCane=new DAOCaneImpl();
+                                  List<Cane> listaCane=new ArrayList<Cane>();
+                                  try 
+                                  {
+	                              listaCane = daoCane.elencoCani(1); //da cambiare con il cane scelto
+	                              //request.setAttribute("idCane", 61);
+                                  for(Cane cane : listaCane){
+                                	  %>
+                                	  <li> 
+                                	  <a href = "profiloCane.jsp"> <%=cane.getNome()%></a>
+                                	  </li>
+                                	  <%
+                                  }
+                                  } catch (DAOException e) {
+			                      e.printStackTrace();
+		                          }%>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -281,12 +295,9 @@
                                     <a href="panels-wells.html">Cerca</a>
                                 </li>
                                 <li>
-                                    <a href="RegistrazioneCane.jsp">Aggiungi</a>
+                                    <a href="registrazioneCane.jsp">Aggiungi</a>
                                 </li>
-                                <li>
-                                    <a href="modifications.html">Modifica</a>
-                                </li>
-                               
+                              
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -297,7 +308,7 @@
                                     <a href="#">Cerca</a>
                                 </li>
                                 <li>
-                                    <a href="/diventaDogSitter.jsp">Diventa Dogsitter</a>
+                                    <a href="diventaDogSitter.jsp">Diventa Dogsitter</a>
                                 </li>
                                
                             </ul>
@@ -327,19 +338,36 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Diventa Toelettatore</h1>
+                        <h1 class="page-header">Diventa Dogsitter</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
-            Vuoi davvero diventare Toelettatore?
+             Vuoi davvero diventare Toelettatore?
             <br>
             Contatta l'amministratore per la candidattura!
             <br><br>
             <a href="DiventaToelettatore?id=<%= session.getAttribute("id")%>" class="btn btn-primary">Diventa Toelettatore</a>
             
+            
+          
+        </div>
+        
+
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">HOME</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
           
         </div>
         <!-- /#page-wrapper -->
