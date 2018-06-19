@@ -297,7 +297,7 @@
                                     <a href="#">Cerca</a>
                                 </li>
                                 <li>
-                                    <a href="diventaDogSitter.jsp">Diventa Dogsitter</a>
+                                    <a href="/diventaDogSitter.jsp">Diventa Dogsitter</a>
                                 </li>
                                
                             </ul>
@@ -327,13 +327,19 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">HOME</h1>
+                        <h1 class="page-header">Diventa Dogsitter</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
+            Vuoi davvero diventare Dog Sitter?
+            <br>
+            Contatta l'amministratore per la candidattura!
+            <br><br>
+            <a href="DiventaDogSitter?id=<%= session.getAttribute("id")%>" class="btn btn-primary">Diventa DogSitter</a>
+            
           
         </div>
         <!-- /#page-wrapper -->
