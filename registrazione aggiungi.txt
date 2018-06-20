@@ -1,0 +1,14 @@
+DAOUtente daoUtente = new DAOUtenteImpl();
+		DAOUtente_Ruolo utente_Ruolo = (DAOUtente_Ruolo) new DAOUtente_RuoloImpl();
+		try {
+
+			daoUtente.save(utente);
+			utente_Ruolo.save(utente.getId());
+			request.setAttribute("utente", utente);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("MailRegistrazione");
+			requestDispatcher.forward(request, response);
+
+		} catch (DAOException e) {
+
+			System.out.println(e.getMessage());
+			response.sendRedirect("errore.jsp");
