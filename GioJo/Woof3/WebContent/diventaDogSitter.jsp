@@ -321,7 +321,7 @@
                                     <a class="active" href="blank.html">Cerca</a>
                                 </li>
                                 <li>
-                                    <a href="#">Diventa Toelettatore</a>
+                                    <a href="diventaToelettatore.jsp">Diventa Toelettatore</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

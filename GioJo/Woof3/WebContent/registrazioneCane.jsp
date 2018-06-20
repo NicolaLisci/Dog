@@ -298,9 +298,7 @@
                                 <li>
                                     <a href="registrazioneCane.jsp">Aggiungi</a>
                                 </li>
-                                <li>
-                                    <a href="modificaCane.jsp">Modifica</a>
-                                </li>
+                                
                                
                             </ul>
                             <!-- /.nav-second-level -->

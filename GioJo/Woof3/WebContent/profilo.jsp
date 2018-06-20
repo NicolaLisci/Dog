@@ -296,7 +296,7 @@
                                     <a href="panels-wells.html">Cerca</a>
                                 </li>
                                 <li>
-                                    <a href="RegistrazioneCane.jsp">Aggiungi</a>
+                                    <a href="registrazioneCane.jsp">Aggiungi</a>
                                 </li>
                                
                                

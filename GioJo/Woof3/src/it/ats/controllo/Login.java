@@ -1,6 +1,9 @@
 package it.ats.controllo;
 
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,9 +20,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import it.ats.modello.Utente;
+import it.ats.modello.Utente_Ruolo;
 import it.ats.persistenza.DAOException;
 import it.ats.persistenza.DAOUtente;
+import it.ats.persistenza.DAOUtente_Ruolo;
 import it.ats.persistenza.impl.DAOUtenteImpl;
+import it.ats.persistenza.impl.DAOUtente_RuoloImpl;
 
 //@WebServlet("/Login")
 public class Login extends HttpServlet {
@@ -40,10 +46,32 @@ public class Login extends HttpServlet {
 		String password = request.getParameter("password");
 		System.out.println(email);
 		System.out.println(password);
+		String plaintext = password;
+		MessageDigest m = null;
+		try {
+			m = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		m.reset();
+		m.update(plaintext.getBytes());
+		byte[] digest = m.digest();
+		BigInteger bigInt = new BigInteger(1, digest);
+		String hashtext = bigInt.toString(16);
+		// Now we need to zero pad it if you actually want the full 32 chars.
+		while (hashtext.length() < 32) {
+			hashtext = "0" + hashtext;
+		}
+		password = hashtext;
+		
 		DAOUtente daoUtente = new DAOUtenteImpl();
+		DAOUtente_Ruolo daoUtente_Ruolo = new DAOUtente_RuoloImpl();
 		try {
 			Utente utente = daoUtente.findUtente(email, password);
 			System.out.println("utente:"+utente);
+			Utente_Ruolo  utente_Ruolo =  daoUtente_Ruolo.findUtente(221);
+			System.out.println(utente_Ruolo);
 			
 			if (utente.getId()!=0) {
 				
@@ -53,6 +81,7 @@ public class Login extends HttpServlet {
 					requestDispatcher.forward(request, response);
 				}else
 				{
+					
 				HttpSession session=request.getSession();  
 
 				session.setAttribute("utente", utente);
