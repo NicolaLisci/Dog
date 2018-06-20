@@ -117,4 +117,14 @@
     <servlet-name>EliminaCane</servlet-name>
     <url-pattern>/EliminaCane</url-pattern>
   </servlet-mapping>
+
+   <servlet>
+    <display-name>PassaggioCane</display-name>
+    <servlet-name>PassaggioCane</servlet-name>
+    <servlet-class>it.ats.controllo.PassaggioCane</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PassaggioCane</servlet-name>
+    <url-pattern>/PassaggioCane</url-pattern>
+  </servlet-mapping>
 </web-app>
