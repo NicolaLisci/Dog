@@ -9,6 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.ats.modello.Cane;
+import it.ats.persistenza.DAOCane;
+import it.ats.persistenza.DAOException;
+import it.ats.persistenza.DAORazza;
+import it.ats.persistenza.impl.DAOCaneImpl;
+import it.ats.persistenza.impl.DAORazzaImpl;
+
 //@WebServlet("/PassaggioCane")
 public class PassaggioCane extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,10 +36,17 @@ public class PassaggioCane extends HttpServlet {
 		try
 		{
 			int idCane=Integer.parseInt(request.getParameter("idCane"));
+			DAOCane daoCane=new DAOCaneImpl();
+			
+			Cane cane=daoCane.vediTutto(idCane);
+			
+			DAORazza daoRazza=new DAORazzaImpl();
+			String nome=daoRazza.findById(cane.getIdRazza());
 			System.out.println(idCane);
+			request.setAttribute("razza", nome);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("profiloCane.jsp");
 			requestDispatcher.forward(request, response);
-		}catch(NullPointerException e)
+		}catch(NullPointerException |DAOException e)
 		{
 			System.out.println("nessun cane");
 		}
