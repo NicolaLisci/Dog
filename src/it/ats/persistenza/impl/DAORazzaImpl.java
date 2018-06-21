@@ -205,4 +205,36 @@ public class DAORazzaImpl implements DAORazza {
 		return listRazza;
 	}
 
+	public String findById(int id) throws DAOException
+	{
+		String sql = "SELECT RAZZA FROM RAZZE WHERE ID_RAZZA = ?";
+		DataSource instance = DataSource.getInstance();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		try {
+			connection = instance.getConnection();
+			preparedStatement = connection.prepareStatement(sql, new String[] { "ID_RAZZA" });
+			preparedStatement.setInt(1, id);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				String nome = resultSet.getString(1);
+				return nome;
+
+			}
+
+		} catch (Exception e) {
+
+			System.out.println(e.getMessage());
+			throw new DAOException(e.getMessage(), e);
+
+		} finally {
+			instance.close(preparedStatement);
+			instance.close(connection);
+
+		}
+		return null;
+	}
+
+
 }
