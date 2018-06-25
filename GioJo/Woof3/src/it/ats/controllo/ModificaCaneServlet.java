@@ -1,6 +1,8 @@
 package it.ats.controllo;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import it.ats.modello.Cane;
 import it.ats.persistenza.DAOCane;
@@ -49,11 +52,14 @@ public class ModificaCaneServlet extends HttpServlet {
 			String pelo = request.getParameter("pelo");
 			String dataNascita = request.getParameter("nascita");
 			int pedegree = Integer.parseInt(request.getParameter("pedegree"));
+			int razza=Integer.parseInt(request.getParameter("razza"));
+			HttpSession session=request.getSession();
 			
-			//int idCane=(int)request.getAttribute("idCane");
+			int idCane=(int)session.getAttribute("idCane");
 			Cane cane = new Cane();
 			
-			cane.setIdCane(61);
+			cane.setPathFoto("foto");
+			cane.setIdCane(idCane);
 			cane.setNome(nome);
 			cane.setTaglia(taglia);
 			cane.setSesso(sesso);
@@ -61,8 +67,8 @@ public class ModificaCaneServlet extends HttpServlet {
 			cane.setPelo(pelo);
 			cane.setDataNascita(dataNascita);
 			cane.setPedegree(pedegree);
-			cane.setIdUtente(1);
-			cane.setIdRazza(1);
+			cane.setIdUtente((int)session.getAttribute("id_utente"));
+			cane.setIdRazza(razza);
 
 			System.out.println(cane);
 			DAOCane daoCane = new DAOCaneImpl();
@@ -70,6 +76,17 @@ public class ModificaCaneServlet extends HttpServlet {
 			try {
 			daoCane.aggiorna(cane);
 			System.out.println("Modifica avvenuta con successo");
+
+			daoCane=new DAOCaneImpl();
+            List<Cane> listaCane=new ArrayList<Cane>();
+            
+            listaCane = daoCane.elencoCani((int)session.getAttribute("id_utente")); 
+            session.removeAttribute("listaCani");
+            session.setAttribute("listaCani", listaCane);
+			
+			
+			
+			
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
 			requestDispatcher.forward(request, response);
 				

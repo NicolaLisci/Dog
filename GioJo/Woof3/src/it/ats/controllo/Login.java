@@ -4,12 +4,8 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,11 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import it.ats.modello.Cane;
 import it.ats.modello.Utente;
 import it.ats.modello.Utente_Ruolo;
+import it.ats.persistenza.DAOCane;
 import it.ats.persistenza.DAOException;
 import it.ats.persistenza.DAOUtente;
 import it.ats.persistenza.DAOUtente_Ruolo;
+import it.ats.persistenza.impl.DAOCaneImpl;
 import it.ats.persistenza.impl.DAOUtenteImpl;
 import it.ats.persistenza.impl.DAOUtente_RuoloImpl;
 
@@ -46,6 +45,7 @@ public class Login extends HttpServlet {
 		String password = request.getParameter("password");
 		System.out.println(email);
 		System.out.println(password);
+		
 		String plaintext = password;
 		MessageDigest m = null;
 		try {
@@ -65,6 +65,7 @@ public class Login extends HttpServlet {
 		}
 		password = hashtext;
 		
+		
 		DAOUtente daoUtente = new DAOUtenteImpl();
 		DAOUtente_Ruolo daoUtente_Ruolo = new DAOUtente_RuoloImpl();
 		try {
@@ -73,15 +74,8 @@ public class Login extends HttpServlet {
 			Utente_Ruolo  utente_Ruolo =  daoUtente_Ruolo.findUtente(221);
 			System.out.println(utente_Ruolo);
 			
+			
 			if (utente.getId()!=0) {
-				
-				if(utente.getVerificato()==0)
-				{
-					RequestDispatcher requestDispatcher = request.getRequestDispatcher("verificatoError.jsp");
-					requestDispatcher.forward(request, response);
-				}else
-				{
-					
 				HttpSession session=request.getSession();  
 
 				session.setAttribute("utente", utente);
@@ -97,26 +91,20 @@ public class Login extends HttpServlet {
 		        session.setAttribute("verificato",utente.getVerificato());  
 		        session.setAttribute("mail",utente.geteMail());  
 		        session.setAttribute("telefono",utente.getnTelefono());  
+		        session.setAttribute("nascita",utente.getDataNascita());  
 		        
-		        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-		        Date date = null;
-				try {
-					date = inputFormat.parse(utente.getDataNascita());
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		        DAOCane daoCane=new DAOCaneImpl();
+                List<Cane> listaCane=new ArrayList<Cane>();
+                
+                listaCane = daoCane.elencoCani(utente.getId()); 
+                session.setAttribute("listaCani", listaCane);
 
-		        DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
-		        String nascita = outputFormat.format(date);
-		        session.setAttribute("nascita",nascita);  
-		        
-		        RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
+
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
 				requestDispatcher.forward(request, response);
-				}
-				} else {
-					RequestDispatcher requestDispatcher = request.getRequestDispatcher("errore.jsp");
-					requestDispatcher.forward(request, response);
+			} else {
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("errore.jsp");
+				requestDispatcher.forward(request, response);
 			}
 		} catch (DAOException e) {
 			e.printStackTrace();
@@ -124,3 +112,40 @@ public class Login extends HttpServlet {
 	}
 
 }
+
+
+
+
+
+
+
+/*
+ DAOCane daoCane=new DAOCaneImpl();
+                                  List<Cane> listaCane=new ArrayList<Cane>();
+                                  
+                                  try 
+                                  {
+	                              listaCane = daoCane.elencoCani(1); //da cambiare con il cane scelto
+	                              //request.setAttribute("idCane", 61);
+	                              System.out.println("Elenco ID");
+                                  for(Cane cane : listaCane){
+                                	  System.out.println(cane.getIdCane());
+                                	  
+                                	  %>
+                                	  <li> 
+                                	 
+                                	  <form method= "POST" action="PassaggioCane">
+                                	  
+                                      <input type="hidden" name = "idCane" id="idCane" value= "<%=cane.getIdCane()%>"    />
+                                	  <button type="submit" style="background-color: transparent; border-color: transparent;"> <%=cane.getNome()%></button>
+                                	
+                                	  
+                                	  </form>
+                                	  </li>
+                                	  <%
+                                  }
+                                  } catch (DAOException e) {
+			                      e.printStackTrace();
+		                          }%>
+
+*/

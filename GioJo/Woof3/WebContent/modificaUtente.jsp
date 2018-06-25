@@ -1,6 +1,10 @@
 <%@ page import = "it.ats.modello.*"  %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="it.ats.persistenza.*" %>
+<%@page import="it.ats.persistenza.impl.*" %>
+<%@page import="java.util.List" %>
+<%@page import="java.util.ArrayList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -34,7 +38,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">W O O F !</a>
+                <a class="navbar-brand" href="home.jsp">W O O F !</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -260,12 +264,23 @@
                         <li>
                             <a href="#">I miei cani<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Cane 1 </a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Cane 2</a>
-                                </li>
+                                <%
+                               List<Cane> listaCane=new ArrayList<Cane>();
+                                listaCane=(List<Cane>)session.getAttribute("listaCani");
+                                 
+                                  for(Cane cane : listaCane){
+                                	  %>
+                                	  <li> 
+                                	  <form method= "POST" action = "PassaggioCane">
+                                	  <input type = "hidden" name = "idCane" id= "idCane" value ="<%=cane.getIdCane() %>" />
+                                	  <button type = "submit" style= "background-color:transparent;border-color:transparent;"><%=cane.getNome() %></button>
+                                	  
+                                	  </form>
+                                	  
+                                	  </li>
+                                	  <%
+                                 
+		                          }%>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -280,10 +295,7 @@
                                     <a href="panels-wells.html">Cerca</a>
                                 </li>
                                 <li>
-                                    <a href="RegistrazioneCane.jsp">Aggiungi</a>
-                                </li>
-                                <li>
-                                    <a href="modifications.html">Modifica</a>
+                                    <a href="registrazioneCane.jsp">Aggiungi</a>
                                 </li>
                                
                             </ul>
@@ -400,7 +412,7 @@ Utente utente = new Utente();
                       </tr>
                        <tr>
                         <td>Password</td>
-                        <td><input type="text" class="form-control"  name="password" value="<%= session.getAttribute("password")%>"></a></td>
+                        <td><input type="text" class="form-control"  name="password" value=""></a></td>
                       </tr>
                       <tr>
                       <td>Data di Nascita</td>

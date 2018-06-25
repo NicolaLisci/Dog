@@ -10,6 +10,5 @@ void aggiorna(Cane cane) throws DAOException;
 void elimina(int idCane) throws DAOException;
 Cane vediTutto( int id_cane) throws DAOException;
 List<Cane> elencoCani(int idUtente) throws DAOException;	
-Cane findById(int idCane)throws DAOException;
 
 }

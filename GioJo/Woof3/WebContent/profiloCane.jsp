@@ -39,7 +39,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">W O O F !</a>
+                <a class="navbar-brand" href="home.jsp">W O O F !</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -265,22 +265,23 @@
                         <li>
                             <a href="#">I miei cani<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                               
                                 <%
-                                  DAOCane daoCane=new DAOCaneImpl();
-                                  List<Cane> listaCane=new ArrayList<Cane>();
-                                  try 
-                                  {
-	                              listaCane = daoCane.elencoCani(1); //da cambiare con il cane scelto
-	                              //request.setAttribute("idCane", 61);
+                               List<Cane> listaCane=new ArrayList<Cane>();
+                                listaCane=(List<Cane>)session.getAttribute("listaCani");
+                                 
                                   for(Cane cane : listaCane){
                                 	  %>
                                 	  <li> 
-                                	  <a href = "profiloCane.jsp"> <%=cane.getNome()%></a>
+                                	  <form method= "POST" action = "PassaggioCane">
+                                	  <input type = "hidden" name = "idCane" id= "idCane" value ="<%=cane.getIdCane() %>" />
+                                	  <button type = "submit" style= "background-color:transparent;border-color:transparent;"><%=cane.getNome() %></button>
+                                	  
+                                	  </form>
+                                	  
                                 	  </li>
                                 	  <%
-                                  }
-                                  } catch (DAOException e) {
-			                      e.printStackTrace();
+                                 
 		                          }%>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -362,45 +363,61 @@ telefono:prova@gmail.com
 nascita:1234567890
 -->
 <% 
-Cane cane = new Cane();
+
+
+Cane cane = (Cane)session.getAttribute("cane");
+session.setAttribute("idCane", cane.getIdCane());
 
 %>
-
+	
              <table class="table table-user-information">
                     <tbody>
                      <img alt="User Pic" width="100" height="100" src="https://www.cesvot.it/sites/default/files/default_images/no-utente_0_0.jpg" class="img-circle img-responsive" > 
                       <br>
                       <tr>
                         <td>Nome:</td>
-                        <td><%= session.getAttribute("nome")%></td>
+                        <td><%= cane.getNome()%></td>
                       </tr>
                       <tr>
                         <td>Taglia:</td>
-                        <td><%= session.getAttribute("taglia") %></td>
+                        <td><%= cane.getTaglia() %></td>
                       </tr>
                       <tr>
                         <td>Chip</td>
-                        <td><%= session.getAttribute("chip") %></td>
+                        <td><%= cane.getChip()%></td>
                       </tr>
                    
                          <tr>
                              <tr>
                         <td>Sesso</td>
-                        <td><%= session.getAttribute("sesso") %></td>
+                        <td><%= cane.getSesso() %></td>
                       </tr>
                         <tr>
                         <td>Pelo</td>
-                        <td><%= session.getAttribute("pelo") %></td>
+                        <td><%= cane.getPelo() %></td>
                       </tr>
                       <tr>
                         <td>Data di nascita</td>
-                        <td><%= session.getAttribute("nascita") %></td>
+                        <td><%= cane.getDataNascita() %></td>
                       </tr>
                       
                     
                       <tr>  
                       <td>Pedegree</td>
-                        <td><%= session.getAttribute("pedegree") %></td>
+                        <td>
+                        <% if(cane.getPedegree()==0) 
+                        {
+                        	%> 
+                        	si
+                        	<%
+                        }
+                        else
+                        {
+                        	%>
+                        	 no
+                        	<%
+                        }
+                        %></td>
                       </tr>
                        <tr>  
                       <td>Razza</td>
@@ -408,7 +425,7 @@ Cane cane = new Cane();
                       </tr>
                       
                       <tr>
-                      <td></td>
+                      
                       <td>
                       <a href="modificaCane.jsp" class="btn btn-warning">Modifica</a>
                       <a href="rimuoviCane.jsp" class="btn btn-danger">Rimuovi</a>
