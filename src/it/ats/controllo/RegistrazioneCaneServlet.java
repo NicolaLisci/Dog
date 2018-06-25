@@ -1,6 +1,8 @@
 package it.ats.controllo;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -72,11 +74,22 @@ public class RegistrazioneCaneServlet extends HttpServlet {
 		cane.setIdRazza(razza);
 		cane.setNome(nome);
 
+		
+		
+		
+		
 		DAOCane daoCane = new DAOCaneImpl();
 
 		try {
 			daoCane.salva(cane);
 			System.out.println("Registrazione avvenuta con successo");
+			
+			daoCane=new DAOCaneImpl();
+            List<Cane> listaCane=new ArrayList<Cane>();
+            
+            listaCane = daoCane.elencoCani((int)session.getAttribute("id_utente")); 
+            session.setAttribute("listaCani", listaCane);
+			
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
 			requestDispatcher.forward(request, response);
 			

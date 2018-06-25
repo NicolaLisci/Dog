@@ -93,12 +93,13 @@ public class Login extends HttpServlet {
 		        session.setAttribute("telefono",utente.getnTelefono());  
 		        session.setAttribute("nascita",utente.getDataNascita());  
 		        
-		         DAOCane daoCane=new DAOCaneImpl();
+		        DAOCane daoCane=new DAOCaneImpl();
                 List<Cane> listaCane=new ArrayList<Cane>();
                 
                 listaCane = daoCane.elencoCani(utente.getId()); 
-                request.setAttribute("listaCani", listaCane);
-		    
+                session.setAttribute("listaCani", listaCane);
+
+
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
 				requestDispatcher.forward(request, response);
 			} else {
@@ -111,3 +112,40 @@ public class Login extends HttpServlet {
 	}
 
 }
+
+
+
+
+
+
+
+/*
+ DAOCane daoCane=new DAOCaneImpl();
+                                  List<Cane> listaCane=new ArrayList<Cane>();
+                                  
+                                  try 
+                                  {
+	                              listaCane = daoCane.elencoCani(1); //da cambiare con il cane scelto
+	                              //request.setAttribute("idCane", 61);
+	                              System.out.println("Elenco ID");
+                                  for(Cane cane : listaCane){
+                                	  System.out.println(cane.getIdCane());
+                                	  
+                                	  %>
+                                	  <li> 
+                                	 
+                                	  <form method= "POST" action="PassaggioCane">
+                                	  
+                                      <input type="hidden" name = "idCane" id="idCane" value= "<%=cane.getIdCane()%>"    />
+                                	  <button type="submit" style="background-color: transparent; border-color: transparent;"> <%=cane.getNome()%></button>
+                                	
+                                	  
+                                	  </form>
+                                	  </li>
+                                	  <%
+                                  }
+                                  } catch (DAOException e) {
+			                      e.printStackTrace();
+		                          }%>
+
+*/

@@ -261,12 +261,28 @@
                         <li>
                             <a href="#">I miei cani<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Cane 1 </a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Cane 2</a>
-                                </li>
+                                <%
+                          
+                                  List<Cane> listaCane=(List<Cane>)session.getAttribute("listaCani");
+                                  
+                             
+                                  for(Cane cane : listaCane){
+                                	 
+                                	  
+                                	  %>
+                                	  <li> 
+                                	 
+                                	  <form method= "POST" action="PassaggioCane">
+                                	  
+                                      <input type="hidden" name = "idCane" id="idCane" value= "<%=cane.getIdCane()%>"    />
+                                	  <button type="submit" style="background-color: transparent; border-color: transparent;"> <%=cane.getNome()%></button>
+                                	
+                                	  
+                                	  </form>
+                                	  </li>
+                                	  <%
+                                  }
+		                          %>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
