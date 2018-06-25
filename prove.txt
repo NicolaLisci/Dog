@@ -1,0 +1,60 @@
+<% 
+
+
+Cane cane = (Cane)request.getAttribute("cane");
+
+%>
+	
+             <table class="table table-user-information">
+                    <tbody>
+                     <img alt="User Pic" width="100" height="100" src="https://www.cesvot.it/sites/default/files/default_images/no-utente_0_0.jpg" class="img-circle img-responsive" > 
+                      <br>
+                      <tr>
+                        <td>Nome:</td>
+                        <td><%= cane.getNome()%></td>
+                      </tr>
+                      <tr>
+                        <td>Taglia:</td>
+                        <td><%= cane.getTaglia() %></td>
+                      </tr>
+                      <tr>
+                        <td>Chip</td>
+                        <td><%= cane.getChip()%></td>
+                      </tr>
+                   
+                         <tr>
+                             <tr>
+                        <td>Sesso</td>
+                        <td><%= cane.getSesso() %></td>
+                      </tr>
+                        <tr>
+                        <td>Pelo</td>
+                        <td><%= cane.getPelo() %></td>
+                      </tr>
+                      <tr>
+                        <td>Data di nascita</td>
+                        <td><%= cane.getDataNascita() %></td>
+                      </tr>
+                      
+                    
+                      <tr>  
+                      <td>Pedegree</td>
+                        <td>
+                        <% if(cane.getPedegree()==0) 
+                        {
+                        	%> 
+                        	si
+                        	<%
+                        }
+                        else
+                        {
+                        	%>
+                        	 no
+                        	<%
+                        }
+                        %></td>
+                      </tr>
+                       <tr>  
+                      <td>Razza</td>
+                        <td><%= request.getAttribute("razza") %></td>
+                      </tr>
