@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -14,11 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import it.ats.modello.Cane;
 import it.ats.modello.Utente;
 import it.ats.modello.Utente_Ruolo;
+import it.ats.persistenza.DAOCane;
 import it.ats.persistenza.DAOException;
 import it.ats.persistenza.DAOUtente;
 import it.ats.persistenza.DAOUtente_Ruolo;
+import it.ats.persistenza.impl.DAOCaneImpl;
 import it.ats.persistenza.impl.DAOUtenteImpl;
 import it.ats.persistenza.impl.DAOUtente_RuoloImpl;
 
@@ -89,6 +93,11 @@ public class Login extends HttpServlet {
 		        session.setAttribute("telefono",utente.getnTelefono());  
 		        session.setAttribute("nascita",utente.getDataNascita());  
 		        
+		         DAOCane daoCane=new DAOCaneImpl();
+                List<Cane> listaCane=new ArrayList<Cane>();
+                
+                listaCane = daoCane.elencoCani(utente.getId()); 
+                request.setAttribute("listaCani", listaCane);
 		    
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
 				requestDispatcher.forward(request, response);
