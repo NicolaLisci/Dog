@@ -4,13 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import it.ats.modello.Cane;
-import it.ats.modello.Utente;
 import it.ats.persistenza.DAOCane;
 import it.ats.persistenza.DAOException;
 import it.ats.persistenza.DataSource;
@@ -104,7 +102,7 @@ public class DAOCaneImpl implements DAOCane {
 				int pedegree = resultSet.getInt(8);
 				int idUtente = resultSet.getInt(9);
 				int idRazza = resultSet.getInt(10);
-
+				String nome=resultSet.getString(11);
 				Cane cane = new Cane();
 
 				cane.setIdCane(id);
@@ -117,7 +115,7 @@ public class DAOCaneImpl implements DAOCane {
 				cane.setPedegree(pedegree);
 				cane.setIdUtente(idUtente);
 				cane.setIdRazza(idRazza);
-
+				cane.setNome(nome);;
 				return cane;
 
 			}
@@ -138,7 +136,7 @@ public class DAOCaneImpl implements DAOCane {
 	public void aggiorna(Cane cane) throws DAOException {
 
 		String sql = "UPDATE CANE SET TAGLIA=?, CHIP=?, SESSO=?, CANE_IMMAGINE=?, PELO=?, DATA_NASCITA=TO_DATE(?,'dd/mm/yyyy'),"
-				+ "PEDEGREE=?, ID_UTENTE=?, ID_RAZZA=? WHERE ID_CANE=?";
+				+ "PEDEGREE=?, ID_UTENTE=?, ID_RAZZA=?, NOME=? WHERE ID_CANE=?";
 
 		DataSource instance = DataSource.getInstance();
 		Connection connection = null;
@@ -154,8 +152,9 @@ public class DAOCaneImpl implements DAOCane {
 			preparedStatement.setString(6, cane.getDataNascita());
 			preparedStatement.setInt(7, cane.getPedegree());
 			preparedStatement.setInt(8, cane.getIdUtente());
-			preparedStatement.setInt(9, cane.getIdRazza());
-			preparedStatement.setInt(10, cane.getIdCane());
+			preparedStatement.setInt(9, cane.getIdRazza());	
+			preparedStatement.setString(10,cane.getNome());
+			preparedStatement.setInt(11, cane.getIdCane());
 			preparedStatement.executeUpdate();
 
 		} catch (Exception e) {
@@ -282,71 +281,4 @@ public class DAOCaneImpl implements DAOCane {
 
 		return listaCani;
 	}
-	public Cane findById(int idCane) throws DAOException {
-		String sql = "SELECT * FROM CANE WHERE ID_CANE = ?";
-		Cane cane = new Cane();
-		System.out.println("id " + idCane);
-		System.out.println(sql);
-
-		DataSource instance = DataSource.getInstance();
-		Connection connection = null;
-		Statement statement = null;
-		ResultSet resultSet = null;
-		try {
-
-			connection = instance.getConnection();
-			statement = connection.createStatement();
-			resultSet = statement.executeQuery(sql);
-
-			if (resultSet.next()) {
-				System.out.println(resultSet);
-
-			    idCane = resultSet.getInt(1);
-				
-				String taglia = resultSet.getString(2);
-				String chip = resultSet.getString(3);
-				String sesso = resultSet.getString(4);
-				String foto = resultSet.getString(5);
-				String pelo = resultSet.getString(6);
-				String dataNascita = resultSet.getString(7);
-				int pedegree = resultSet.getInt(8);
-				int idUtente = resultSet.getInt(9);
-				int idRazza = resultSet.getInt(10);
-				String nome = resultSet.getString(11);
-				
-
-
-				cane.setIdCane(idCane);
-				cane.setTaglia(taglia);
-				cane.setChip(chip);
-				cane.setSesso(sesso);
-				cane.setPathFoto(foto);
-				cane.setPelo(pelo);
-				cane.setDataNascita(dataNascita);
-				cane.setPedegree(pedegree);
-				cane.setIdUtente(idUtente);
-				cane.setIdRazza(idRazza);
-				cane.setNome(nome);
-				
-
-			}
-
-		} catch (SQLException ex) {
-
-			System.out.println(ex.getMessage());
-
-			throw new DAOException(ex.getMessage(), ex);
-
-		} finally {
-
-			instance.close(resultSet);
-
-			instance.close(statement);
-
-			instance.close(connection);
-
-		}
-		return cane;
-
-}
 }

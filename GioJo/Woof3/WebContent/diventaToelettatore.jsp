@@ -38,7 +38,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">W O O F !</a>
+                <a class="navbar-brand" href="home.jsp">W O O F !</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -264,22 +264,22 @@
                         <li>
                             <a href="#">I miei cani<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <%
-                                  DAOCane daoCane=new DAOCaneImpl();
-                                  List<Cane> listaCane=new ArrayList<Cane>();
-                                  try 
-                                  {
-	                              listaCane = daoCane.elencoCani(1); //da cambiare con il cane scelto
-	                              //request.setAttribute("idCane", 61);
+                                  <%
+                               List<Cane> listaCane=new ArrayList<Cane>();
+                                listaCane=(List<Cane>)session.getAttribute("listaCani");
+                                 
                                   for(Cane cane : listaCane){
                                 	  %>
                                 	  <li> 
-                                	  <a href = "profiloCane.jsp"> <%=cane.getNome()%></a>
+                                	  <form method= "POST" action = "PassaggioCane">
+                                	  <input type = "hidden" name = "idCane" id= "idCane" value ="<%=cane.getIdCane() %>" />
+                                	  <button type = "submit" style= "background-color:transparent;border-color:transparent;"><%=cane.getNome() %></button>
+                                	  
+                                	  </form>
+                                	  
                                 	  </li>
                                 	  <%
-                                  }
-                                  } catch (DAOException e) {
-			                      e.printStackTrace();
+                                 
 		                          }%>
                             </ul>
                             <!-- /.nav-second-level -->
