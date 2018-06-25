@@ -127,4 +127,14 @@
     <servlet-name>PassaggioCane</servlet-name>
     <url-pattern>/PassaggioCane</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <display-name>VediDogSitter</display-name>
+    <servlet-name>VediDogSitter</servlet-name>
+    <servlet-class>it.ats.controllo.VediDogSitter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VediDogSitter</servlet-name>
+    <url-pattern>/VediDogSitter</url-pattern>
+  </servlet-mapping>
 </web-app>
