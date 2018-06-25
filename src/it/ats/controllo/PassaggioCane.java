@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import it.ats.modello.Cane;
 import it.ats.persistenza.DAOCane;
@@ -39,11 +40,12 @@ public class PassaggioCane extends HttpServlet {
 			DAOCane daoCane=new DAOCaneImpl();
 			
 			Cane cane=daoCane.vediTutto(idCane);
-			
+			HttpSession session=request.getSession();
 			DAORazza daoRazza=new DAORazzaImpl();
 			String nome=daoRazza.findById(cane.getIdRazza());
 			System.out.println(idCane);
-			request.setAttribute("razza", nome);
+			session.setAttribute("cane", cane);
+			session.setAttribute("razza", nome);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("profiloCane.jsp");
 			requestDispatcher.forward(request, response);
 		}catch(NullPointerException |DAOException e)

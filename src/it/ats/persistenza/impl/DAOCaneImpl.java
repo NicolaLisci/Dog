@@ -10,6 +10,18 @@ import java.util.List;
 
 import it.ats.modello.Cane;
 import it.ats.persistenza.DAOCane;
+package it.ats.persistenza.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import it.ats.modello.Cane;
+import it.ats.persistenza.DAOCane;
 import it.ats.persistenza.DAOException;
 import it.ats.persistenza.DataSource;
 
@@ -102,7 +114,7 @@ public class DAOCaneImpl implements DAOCane {
 				int pedegree = resultSet.getInt(8);
 				int idUtente = resultSet.getInt(9);
 				int idRazza = resultSet.getInt(10);
-
+				String nome=resultSet.getString(11);
 				Cane cane = new Cane();
 
 				cane.setIdCane(id);
@@ -115,7 +127,7 @@ public class DAOCaneImpl implements DAOCane {
 				cane.setPedegree(pedegree);
 				cane.setIdUtente(idUtente);
 				cane.setIdRazza(idRazza);
-
+				cane.setNome(nome);;
 				return cane;
 
 			}
@@ -136,7 +148,7 @@ public class DAOCaneImpl implements DAOCane {
 	public void aggiorna(Cane cane) throws DAOException {
 
 		String sql = "UPDATE CANE SET TAGLIA=?, CHIP=?, SESSO=?, CANE_IMMAGINE=?, PELO=?, DATA_NASCITA=TO_DATE(?,'dd/mm/yyyy'),"
-				+ "PEDEGREE=?, ID_UTENTE=?, ID_RAZZA=? WHERE ID_CANE=?";
+				+ "PEDEGREE=?, ID_UTENTE=?, ID_RAZZA=?, NOME=? WHERE ID_CANE=?";
 
 		DataSource instance = DataSource.getInstance();
 		Connection connection = null;
@@ -152,8 +164,9 @@ public class DAOCaneImpl implements DAOCane {
 			preparedStatement.setString(6, cane.getDataNascita());
 			preparedStatement.setInt(7, cane.getPedegree());
 			preparedStatement.setInt(8, cane.getIdUtente());
-			preparedStatement.setInt(9, cane.getIdRazza());
-			preparedStatement.setInt(10, cane.getIdCane());
+			preparedStatement.setInt(9, cane.getIdRazza());	
+			preparedStatement.setString(10,cane.getNome());
+			preparedStatement.setInt(11, cane.getIdCane());
 			preparedStatement.executeUpdate();
 
 		} catch (Exception e) {
