@@ -1,16 +1,12 @@
-<%@ page import="it.ats.modello.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <title>ERROR</title>
 </head>
@@ -24,26 +20,21 @@
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-sm-6 col-sm-offset-3">
-							<h4>Impossibile inviare
-								la mail al momento, riprova più tardi.</h4>
+							 <h3>Errore interno</h3>
 								</div>
+							
+								<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<a href="home.jsp" class="form-control btn btn-register"   >TORNA ALLA HOME</a>
+											</div>
+						</div>
+						
+					</div>
 
-							<div class="form-group">
-								<div class="row">
-									<div class="col-sm-6 col-sm-offset-3">
-										<form action="MailRegistrazione" method="POST">
-											<input type="hidden" name="id" value="${utente.getId()}">
-											<input type="hidden" name="mail" value="${utente.geteMail()}">
-											<input type="hidden" name="user"
-												value="${utente.getUsername()}"> <input
-												type="submit" name="invia"
-												class="form-control btn btn-register" value="Reinvia Mail">
-										</form>
 
-									</div>
-								</div>
 
-							</div>
+	
 </body>
 </html>
 
@@ -92,10 +83,3 @@ body {
 	background-image: -moz-line
 }
 </style>
-
-<%
-	Utente utente = new Utente();
-	utente = (Utente) request.getAttribute("utente");
-%>
-
-
