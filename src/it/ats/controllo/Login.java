@@ -71,7 +71,7 @@ public class Login extends HttpServlet {
 		try {
 			Utente utente = daoUtente.findUtente(email, password);
 			System.out.println("utente:"+utente);
-			Utente_Ruolo  utente_Ruolo =  daoUtente_Ruolo.findUtente(221);
+			Utente_Ruolo  utente_Ruolo =  daoUtente_Ruolo.findUtente(utente.getId());
 			System.out.println(utente_Ruolo);
 			
 			
