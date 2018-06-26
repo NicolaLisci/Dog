@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Map.Entry;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import it.ats.modello.Utente;
 import it.ats.persistenza.DAOException;
 import it.ats.persistenza.DAOUtente;
@@ -62,13 +62,30 @@ public class Registrazione extends HttpServlet {
 		m.reset();
 		m.update(plaintext.getBytes());
 		byte[] digest = m.digest();
-		BigInteger bigInt = new BigInteger(1,digest);
+		BigInteger bigInt = new BigInteger(1, digest);
 		String hashtext = bigInt.toString(16);
 		// Now we need to zero pad it if you actually want the full 32 chars.
-		while(hashtext.length() < 32 ){
-		  hashtext = "0"+hashtext;
+		while (hashtext.length() < 32) {
+			hashtext = "0" + hashtext;
 		}
-		password=hashtext;
+		password = hashtext;
+		
+		
+		
+//		System.out.println("user: "+ username);
+//		System.out.println("nome: "+ nome);
+//		System.out.println("cognome: "+ cognome);
+//		System.out.println("sesso: "+ sesso);
+//		System.out.println("email: "+ email);
+//		System.out.println("password: "+ password);
+//		System.out.println("nascita:" +nascita);
+//		System.out.println("indirizzo: "+ indirizzo);
+//		System.out.println("telefono: " + telefono);
+//		System.out.println("foto: "+ foto);
+//		System.out.println("verifica: " + verifica);
+//		System.out.println("citta: "+ citta);
+		
+		
 		Utente utente = new Utente();
 		utente.setUsername(username);
 		utente.setNome(nome);
@@ -83,18 +100,13 @@ public class Registrazione extends HttpServlet {
 		utente.setVerificato(verifica);
 		utente.setCitta(citta);
 		
-		
-		
-		
-		
-		
-		
+
 		DAOUtente daoUtente = new DAOUtenteImpl();
 		DAOUtente_Ruolo utente_Ruolo = (DAOUtente_Ruolo) new DAOUtente_RuoloImpl();
 		try {
 
 			daoUtente.save(utente);
-			System.out.println("OK L UTENTE VA");
+			
 			utente_Ruolo.save(utente.getId());
 			System.out.println("OK L UTENTE VA");
 			request.setAttribute("utente", utente);
