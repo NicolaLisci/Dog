@@ -145,4 +145,49 @@ public class DAOUtente_RuoloImpl implements DAOUtente_Ruolo {
 
 	
 }
+	
+	public void saveIdRuolo(int id_Utente,int id_Ruolo) throws DAOException {
+
+		String sql = "INSERT INTO UTENTE_RUOLO VALUES(ID_UTENTE_RUOLO_SEQ.NEXTVAL,?,"+id_Ruolo+")";
+	DataSource instance = DataSource.getInstance();
+	Connection connection = null;
+	PreparedStatement prepareStatement = null;
+
+	Utente_Ruolo utente_Ruolo=new Utente_Ruolo();
+
+	try {
+		
+		connection = instance.getConnection();
+		prepareStatement = connection.prepareStatement(sql, new String[] { "ID_UTENTE_RUOLO" });
+		prepareStatement.setInt(1, id_Utente);
+		
+		
+		
+		prepareStatement.executeUpdate();
+
+		ResultSet generatedKeys = prepareStatement.getGeneratedKeys();
+
+		if (generatedKeys != null && generatedKeys.next()) {
+
+			int id = generatedKeys.getInt(1);
+
+			utente_Ruolo.setId_Utente_Ruolo(id);
+
+		}
+
+	} catch (SQLException ex) {
+		// System.out.println("qua");
+		System.out.println(ex.getMessage());
+
+		throw new DAOException(ex.getMessage(), ex);
+
+	} finally {
+
+		instance.close(prepareStatement);
+
+		instance.close(connection);
+
+	}
+
+}
 }
