@@ -137,4 +137,14 @@
     <servlet-name>VediDogSitter</servlet-name>
     <url-pattern>/VediDogSitter</url-pattern>
   </servlet-mapping>
+
+   <servlet>
+    <display-name>VediToelettatori</display-name>
+    <servlet-name>VediToelettatori</servlet-name>
+    <servlet-class>it.ats.controllo.VediToelettatori</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VediToelettatori</servlet-name>
+    <url-pattern>/VediToelettatori</url-pattern>
+  </servlet-mapping>
 </web-app>
