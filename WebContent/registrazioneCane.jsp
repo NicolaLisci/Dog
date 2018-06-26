@@ -378,7 +378,7 @@
 				if(razza!=null)
 				{
 					%>
-					<option value="1"> <%=razza.getRazza()%></option>
+					<option value="<%=razza.getIdRazza()%>"> <%=razza.getRazza()%></option>
 					<%
 				}
 
