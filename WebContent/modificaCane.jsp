@@ -413,12 +413,51 @@ try
 <div class="form-group">
 <label class="col-md-4 control-label" for="gender">Sesso</label>  
 <div class="col-md-4">
-<label>
-<input type="radio" name="gender"   value ="maschio">Maschio</label><br>
-<label>
-<input type="radio" name="gender"   value="femmina">Femmina</label> <br>
-<label>
-<input type="radio" name= "gender"   value="altro" checked="checked">Altro</label> <br>
+<%
+    switch(cane.getSesso())
+    {
+    case "maschio":
+    {
+        %>
+        <label>
+        <input type="radio" name="gender"   value ="maschio" checked="checked" >Maschio</label><br>
+        <label>
+        <input type="radio" name="gender"   value="femmina">Femmina</label> <br>
+        <label>
+        <input type="radio" name= "gender"   value="altro" >Altro</label> <br>
+        </div>
+        <%
+        break;
+    }
+    case "femmina":
+    {
+        %>
+        <label>
+        <input type="radio" name="gender"   value ="maschio" >Maschio</label><br>
+        <label>
+        <input type="radio" name="gender"   value="femmina" checked="checked" >Femmina</label> <br>
+        <label>
+        <input type="radio" name= "gender"   value="altro" >Altro</label> <br>
+        </div>
+        <%
+        break;
+    }
+    default:
+    {
+        %>
+        <label>
+        <input type="radio" name="gender"   value ="maschio" >Maschio</label><br>
+        <label>
+        <input type="radio" name="gender"   value="femmina" >Femmina</label> <br>
+        <label>
+        <input type="radio" name= "gender"   value="altro" checked="checked" >Altro</label> <br>
+        </div>
+        <%
+        break;
+    }
+    }
+    
+%>
 </div>
 </div>
 
