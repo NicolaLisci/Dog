@@ -13,5 +13,8 @@ public interface DAOUtente {
 	void updateVerificato(String mail,int id) throws DAOException;
 	boolean findByUserPass(String user,String pass) throws DAOException;
 	void aggiorna(Utente utente)throws DAOException;
+	
+	Utente findUtenteByUsername (String username) throws DAOException;
+	
 }
 

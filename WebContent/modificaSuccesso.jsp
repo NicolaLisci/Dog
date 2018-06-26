@@ -1,15 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
 
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<title>Cambia ruolo</title>
+<title>modificato con successo</title>
 </head>
 <body>
 
@@ -20,35 +24,22 @@
 				<div class="panel panel-login">
 					<div class="panel-heading">
 						<div class="row">
-						<form action="PassaUtenteRuolo" method="POST">
 							<div class="col-sm-6 col-sm-offset-3">
-								<h3>cambia ruolo</h3>
-							</div>
-								<div class="col-sm-6 col-sm-offset-3">
+							 <h3>modificato con successo</h3>
+								</div>
+							
 								<div class="form-group">
-										<input type="text" name="UserName" id="UserName" tabindex="1"
-											class="form-control" placeholder="Citta" value="Username">
-									</div>
-							</div>
-							<div class="col-sm-6 col-sm-offset-3">
-								<h4>Ruolo</h4>
-								<select name="idRuolo" class="form-control"
-									placeholder="idRuolo">
-									<option value="0">Admin</option>
-									<option value="1">Dipendente</option>
-									<option value="2">Utente</option>
-									<option value="3">Dogsitter</option>
-									<option value="4">Toelettatore</option>
-									<option value="5">Addestratore</option>
-
-									<div class="form-group"></div>
-									<div class="row">
-										<div class="col-sm-6 col-sm-offset-3">
-								</select> <input type="submit" value="INVIA"
-									class="form-control btn btn-register" />
-							</div>
-
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<a href="home.jsp" class="form-control btn btn-register"   >TORNA ALLA HOME</a>
+											</div>
 						</div>
+						
+					</div>
+
+
+
+	
 </body>
 </html>
 
@@ -97,6 +88,3 @@ body {
 	background-image: -moz-line
 }
 </style>
-
-</body>
-</html>
