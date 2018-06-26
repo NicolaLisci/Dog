@@ -75,7 +75,8 @@ public class Login extends HttpServlet {
 			System.out.println(utente_Ruolo);
 			
 			
-			if (utente.getId()!=0) {
+			if (utente.getId()!=0  ) {
+				if(utente.getVerificato() !=0){
 				HttpSession session=request.getSession();  
 
 				session.setAttribute("utente", utente);
@@ -102,6 +103,10 @@ public class Login extends HttpServlet {
 
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
 				requestDispatcher.forward(request, response);
+				}else{
+					RequestDispatcher requestDispatcher = request.getRequestDispatcher("verificatoError.jsp");
+					requestDispatcher.forward(request, response);
+				}
 			} else {
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("errore.jsp");
 				requestDispatcher.forward(request, response);
