@@ -127,6 +127,15 @@
     <url-pattern>/PassaggioCane</url-pattern>
   </servlet-mapping>
   <servlet>
+    <display-name>CambiaRuoloMail</display-name>
+    <servlet-name>CambiaRuoloMail</servlet-name>
+    <servlet-class>it.ats.controllo.CambiaRuoloMail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CambiaRuoloMail</servlet-name>
+    <url-pattern>/CambiaRuoloMail</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <display-name>PassaUtenteRuolo</display-name>
     <servlet-name>PassaUtenteRuolo</servlet-name>
     <servlet-class>it.ats.controllo.PassaUtenteRuolo</servlet-class>
@@ -135,7 +144,24 @@
     <servlet-name>PassaUtenteRuolo</servlet-name>
     <url-pattern>/PassaUtenteRuolo</url-pattern>
   </servlet-mapping>
-
+  <servlet>
+    <display-name>VediDogSitter</display-name>
+    <servlet-name>VediDogSitter</servlet-name>
+    <servlet-class>it.ats.controllo.VediDogSitter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VediDogSitter</servlet-name>
+    <url-pattern>/VediDogSitter</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>VediToelettatori</display-name>
+    <servlet-name>VediToelettatori</servlet-name>
+    <servlet-class>it.ats.controllo.VediToelettatori</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VediToelettatori</servlet-name>
+    <url-pattern>/VediToelettatori</url-pattern>
+  </servlet-mapping>
   <servlet>
     <display-name>ProfiloToelettatore</display-name>
     <servlet-name>ProfiloToelettatore</servlet-name>
@@ -144,5 +170,22 @@
   <servlet-mapping>
     <servlet-name>ProfiloToelettatore</servlet-name>
     <url-pattern>/ProfiloToelettatore</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>ProfiloDogSitter</display-name>
+    <servlet-name>ProfiloDogSitter</servlet-name>
+    <servlet-class>it.ats.controllo.ProfiloDogSitter</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProfiloDogSitter</servlet-name>
+    <url-pattern>/ProfiloDogSitter</url-pattern>
+  </servlet-mapping> <servlet>
+    <display-name>RegistrazioneDogFriendly</display-name>
+    <servlet-name>RegistrazioneDogFriendly</servlet-name>
+    <servlet-class>it.ats.controllo.RegistrazioneDogFriendly</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegistrazioneDogFriendly</servlet-name>
+    <url-pattern>/RegistrazioneDogFriendly</url-pattern>
   </servlet-mapping>
 </web-app>
