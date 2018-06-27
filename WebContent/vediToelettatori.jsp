@@ -354,21 +354,47 @@
                         <h1 class="page-header">TOELETTATORE</h1>
                     </div>
                     <div>
+                    
+                    
+                    <%List<Utente>listaToelettatori=(List<Utente>)session.getAttribute("listaToelettatori");
+                    listaCane=(List<Cane>)session.getAttribute("listaCani");%>
+                    
+                    <div class="container-fluid table-responsive">
+                    <table class="table table-striped">
+                    <thead>
+                    <tr>
+                 
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th></th>
+                    </thead>
+                    <tbody>
                     <%
-             	List<Utente>listaToelettatori=(List<Utente>)session.getAttribute("listaToelettatori");
-             for(Utente utente: listaToelettatori){
-            	 if(utente!=null)
-            	 {
+                    for(Utente utente: listaToelettatori){
             		%>
-            		Nome: <%=utente.getNome() %><br>
-            		Cognome: <%=utente.getCognome() %><br>
-            		E-mail: <%=utente.geteMail() %><br>
-            		Numero di telefono: <%=utente.getnTelefono() %><br>
-            		________________________________________________________<br>
-            	 <%
-            	 }
+            		<tr>
+            		<td><%=utente.getNome() %></td>
+            		<td><%=utente.getCognome() %></td>
+            		<td>
+            		<form action="ProfiloToelettatore" method="POST">
+            		<input type="hidden" name="idToelettatore" value="<%=utente.getId() %>">
+            		<input type="submit" name="prenota" class="btn btn-primary" value="Prenota">
+            		</form>
+            		</td>
+            		<%
+            	 
              }
-             %></div>
+             %>
+             
+                    </tbody>
+
+                    </table>
+                    
+                    
+                    
+                    
+                    
+			</div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
