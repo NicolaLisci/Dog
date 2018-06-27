@@ -362,7 +362,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">HOME</h1>
+                        <h1 class="page-header">HOME
+                    
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -371,7 +372,7 @@
             <!-- /.container-fluid -->
             
             
-          
+              <img src="uploads/Logo.png" alt="logo" height="60%" width="100%"></h1>
         </div>
         <!-- /#page-wrapper -->
 
