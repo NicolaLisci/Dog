@@ -1,10 +1,4 @@
-
-
-             
-             
-             
-             
-             <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
         <%@page import="it.ats.modello.*" %>
 <%@page import="it.ats.persistenza.*" %>
@@ -315,9 +309,7 @@
                         <li>
                             <a href="#"></i>Dogsitter<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="VediDogSitter">Cerca</a>
-                                </li>
+                                
                                 <li>
                                     <a href="diventaDogSitter.jsp">Diventa Dogsitter</a>
                                 </li>
@@ -346,29 +338,49 @@
 
         
 
-        <!-- Page Content -->
-        <div id="page-wrapper">
+        <!-- Page Content --> <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">DOGSITTER</h1>
                     </div>
                     <div>
+                    
+                 <%   List<Utente>listaDogSitter=(List<Utente>)session.getAttribute("listaDogSitter");
+                 listaCane=(List<Cane>)session.getAttribute("listaCani");%>
+                    <div class="container-fluid table-responsive">
+                    <table class="table table-striped">
+                    <thead>
+                    <tr>
+                 
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th></th>
+                    </thead>
+                    <tbody>
                     <%
-             	List<Utente>listaDogSitter=(List<Utente>)session.getAttribute("listaDogSitter");
-             for(Utente utente: listaDogSitter){
-            	 if(utente!=null)
-            	 {
-            		%>
-            		Nome: <%=utente.getNome() %><br>
-            		Cognome: <%=utente.getCognome() %><br>
-            		E-mail: <%=utente.geteMail() %><br>
-            		Numero di telefono: <%=utente.getnTelefono() %><br>
-            		________________________________________________________<br>
-            	 <%
-            	 }
-             }
-             %></div>
+                    for(Utente utente: listaDogSitter){
+                    	if (utente.getId() != (Integer) session.getAttribute("id_utente")) {
+							%>
+            		
+            		<tr>
+            		<td><%=utente.getNome() %></td>
+            		<td><%=utente.getCognome() %></td>
+            		<td>
+            		<form action="ProfiloDogSitter" method="POST">
+            		<input type="hidden" name="idDogSitter" value="<%=utente.getId() %>">
+            		<input type="submit" name="prenota" class="btn btn-primary" value="Prenota">
+            		</form>
+            		</td>
+            		<%
+            	 
+             }}
+             %>
+             
+                    </tbody>
+
+                    </table>
+      
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
