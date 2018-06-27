@@ -320,6 +320,26 @@
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
+                        </li> <li>
+                           <div>
+                           <% 
+                            int ruolo = (Integer) session.getAttribute("ruolo");
+                        	if (ruolo==1 || ruolo==0){
+                        	   System.out.print("sei sulla buona strada ");
+                        	   %>
+                        	    <li>
+                                    <a  href="registrazioneDogFriendly.jsp">Aggiungi dogfrendly</a>
+                        	   
+                        	    </li>
+                        	     <% if (ruolo==0){%>
+                        	     
+                        	    	 <%   } %>
+                                <li>
+                                    <a href="cambiaRuolo.jsp">Cambia Ruolo</a>
+                                </li>
+                        	   <% 
+                           } %>
+                           </div>
                         </li>
                     </ul>
                 </div>

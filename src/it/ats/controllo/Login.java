@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -43,8 +47,8 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		System.out.println(email);
-		System.out.println(password);
+	
+		System.out.println("Nome Progetto: "+request.getContextPath());
 		
 		String plaintext = password;
 		MessageDigest m = null;
@@ -70,15 +74,25 @@ public class Login extends HttpServlet {
 		DAOUtente_Ruolo daoUtente_Ruolo = new DAOUtente_RuoloImpl();
 		try {
 			Utente utente = daoUtente.findUtente(email, password);
-			System.out.println("utente:"+utente);
-			Utente_Ruolo  utente_Ruolo =  daoUtente_Ruolo.findUtente(utente.getId());
-			System.out.println(utente_Ruolo);
+			//System.out.println("utente:"+utente);
+			List<Utente_Ruolo>  lista_ruoli =  daoUtente_Ruolo.findUtente(utente.getId());
+			//System.out.println("ruoli:"+lista_ruoli);
 			
 			
-			if (utente.getId()!=0  ) {
-				if(utente.getVerificato() !=0){
+			if (utente.getId()!=0) {
 				HttpSession session=request.getSession();  
-
+				for (Utente_Ruolo ruolo : lista_ruoli)
+				{
+					if (ruolo.getId_Ruolo()==0 || ruolo.getId_Ruolo()==1)
+					{
+						session.setAttribute("ruolo",ruolo.getId_Ruolo());
+					}else{
+						session.setAttribute("ruolo",2);
+					}
+	 			}
+				
+				
+				
 				session.setAttribute("utente", utente);
 				session.setAttribute("id_utente",utente.getId());  
 		        session.setAttribute("nome",utente.getNome());  
@@ -92,7 +106,18 @@ public class Login extends HttpServlet {
 		        session.setAttribute("verificato",utente.getVerificato());  
 		        session.setAttribute("mail",utente.geteMail());  
 		        session.setAttribute("telefono",utente.getnTelefono());  
-		        session.setAttribute("nascita",utente.getDataNascita());  
+		        DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+		        Date date = null;
+				try {
+					date = inputFormat.parse(utente.getDataNascita());
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+		        DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+		        String nascita = outputFormat.format(date);
+		        session.setAttribute("nascita",nascita);   
 		        
 		        DAOCane daoCane=new DAOCaneImpl();
                 List<Cane> listaCane=new ArrayList<Cane>();
@@ -103,10 +128,6 @@ public class Login extends HttpServlet {
 
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
 				requestDispatcher.forward(request, response);
-				}else{
-					RequestDispatcher requestDispatcher = request.getRequestDispatcher("verificatoError.jsp");
-					requestDispatcher.forward(request, response);
-				}
 			} else {
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("errore.jsp");
 				requestDispatcher.forward(request, response);

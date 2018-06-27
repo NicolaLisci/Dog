@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+        <%@page import="it.ats.modello.*" %>
+<%@page import="it.ats.persistenza.*" %>
+<%@page import="it.ats.persistenza.impl.*" %>
+<%@page import="java.util.List" %>
+<%@page import="java.util.ArrayList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -33,7 +38,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">W O O F !</a>
+                <a class="navbar-brand" href="home.jsp">W O O F !</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -228,9 +233,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="profilo.jsp"><i class="fa fa-user fa-fw"></i>Profilo</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i>Informazioni</a>
-                        </li>
+                       
                         <li class="divider"></li>
                         <li><a href="./Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
@@ -262,27 +265,23 @@
                             <a href="#">I miei cani<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <%
-                          
-                                  List<Cane> listaCane=(List<Cane>)session.getAttribute("listaCani");
                                   
-                             
+                                  List<Cane> listaCane=new ArrayList<Cane>();
+                                listaCane=(List<Cane>)session.getAttribute("listaCani");
+                                 
                                   for(Cane cane : listaCane){
-                                	 
-                                	  
                                 	  %>
                                 	  <li> 
-                                	 
-                                	  <form method= "POST" action="PassaggioCane">
-                                	  
-                                      <input type="hidden" name = "idCane" id="idCane" value= "<%=cane.getIdCane()%>"    />
-                                	  <button type="submit" style="background-color: transparent; border-color: transparent;"> <%=cane.getNome()%></button>
-                                	
+                                	  <form method= "POST" action = "PassaggioCane">
+                                	  <input type = "hidden" name = "idCane" id= "idCane" value ="<%=cane.getIdCane() %>" />
+                                	  <button type = "submit" style= "background-color:transparent;border-color:transparent;"><%=cane.getNome() %></button>
                                 	  
                                 	  </form>
+                                	  
                                 	  </li>
                                 	  <%
-                                  }
-		                          %>
+                                 
+		                          }%>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -293,16 +292,11 @@
                         <li>
                             <a href="#"></i>Gestione cani<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                
                                 <li>
-                                    <a href="panels-wells.html">Cerca</a>
+                                    <a href="registrazioneCane.jsp">Aggiungi</a>
                                 </li>
-                                <li>
-                                    <a href="RegistrazioneCane.jsp">Aggiungi</a>
-                                </li>
-                                <li>
-                                    <a href="modifications.html">Modifica</a>
-                                </li>
-                               
+                              
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -310,7 +304,7 @@
                             <a href="#"></i>Dogsitter<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Cerca</a>
+                                    <a  href="VediDogSitter">Vedi</a>
                                 </li>
                                 <li>
                                     <a href="diventaDogSitter.jsp">Diventa Dogsitter</a>
@@ -323,13 +317,36 @@
                             <a href="#">Toelettatura<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a class="active" href="blank.html">Cerca</a>
+                                    <a  href="VediToelettatori">Vedi</a>
                                 </li>
                                 <li>
-                                <a href="diventaToelettatore.jsp">Diventa Toelettatore</a>
+                                    <a href="diventaToelettatore.jsp">Diventa Toelettatore</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
+                        </li>
+                        
+                        
+                         <li>
+                           <div>
+                           <% 
+                            int ruolo = (Integer) session.getAttribute("ruolo");
+                        	if (ruolo==1 || ruolo==0){
+                        	   System.out.print("sei sulla buona strada ");
+                        	   %>
+                        	    <li>
+                                    <a  href="registrazioneDogFriendly.jsp">Aggiungi dogfrendly</a>
+                        	   
+                        	    </li>
+                        	     <% if (ruolo==0){%>
+                        	     
+                        	    	 <%   } %>
+                                <li>
+                                    <a href="cambiaRuolo.jsp">Cambia Ruolo</a>
+                                </li>
+                        	   <% 
+                           } %>
+                           </div>
                         </li>
                     </ul>
                 </div>
@@ -337,6 +354,8 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+
+        
 
         <!-- Page Content -->
         <div id="page-wrapper">
@@ -350,6 +369,8 @@
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
+            
+            
           
         </div>
         <!-- /#page-wrapper -->
@@ -368,6 +389,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
+
 
 </body>
 

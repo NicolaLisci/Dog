@@ -1,6 +1,11 @@
-<%@ page import = "it.ats.modello.*"  %>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+     <%@page import="it.ats.modello.*" %>
+<%@page import="it.ats.persistenza.*" %>
+<%@page import="it.ats.persistenza.impl.*" %>
+<%@page import="java.util.List" %>
+<%@page import="java.util.ArrayList" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -34,7 +39,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">W O O F !</a>
+                <a class="navbar-brand" href="home.jsp">W O O F !</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -228,12 +233,10 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i>Profilo</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i>Informazioni</a>
-                        </li>
+                        <li><a href="profilo.jsp"><i class="fa fa-user fa-fw"></i>Profilo</a>
+                       
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="./Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -262,12 +265,25 @@
                         <li>
                             <a href="#">I miei cani<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Cane 1 </a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Cane 2</a>
-                                </li>
+                                            <%
+                                  
+                                  List<Cane> listaCane=new ArrayList<Cane>();
+                                listaCane=(List<Cane>)session.getAttribute("listaCani");
+                                 
+                                  for(Cane cane : listaCane){
+                                	  %>
+                                	  <li> 
+                                	  <form method= "POST" action = "PassaggioCane">
+                                	  <input type = "hidden" name = "idCane" id= "idCane" value ="<%=cane.getIdCane() %>" />
+                                	  <button type = "submit" style= "background-color:transparent;border-color:transparent;"><%=cane.getNome() %></button>
+                                	  
+                                	  </form>
+                                	  
+                                	  </li>
+                                	  <%
+                                 
+		                          }%>
+                                 
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -278,15 +294,11 @@
                         <li>
                             <a href="#"></i>Gestione cani<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                               
                                 <li>
-                                    <a href="panels-wells.html">Cerca</a>
+                                    <a href="registrazioneCane.jsp">Aggiungi</a>
                                 </li>
-                                <li>
-                                    <a href="RegistrazioneCane.jsp">Aggiungi</a>
-                                </li>
-                                <li>
-                                    <a href="modifications.html">Modifica</a>
-                                </li>
+                               
                                
                             </ul>
                             <!-- /.nav-second-level -->
@@ -295,10 +307,10 @@
                             <a href="#"></i>Dogsitter<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Cerca</a>
+                                    <a href="VediDogsitter">Vedi</a>
                                 </li>
                                 <li>
-                                    <a href="#">Diventa Dogsitter</a>
+                                    <a href="diventaDogSitter.jsp">Diventa Dogsitter</a>
                                 </li>
                                
                             </ul>
@@ -308,13 +320,33 @@
                             <a href="#">Toelettatura<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a class="active" href="blank.html">Cerca</a>
+                                    <a class="active" href="VediToelettatori">Vedi</a>
                                 </li>
                                 <li>
-                                    <a href="#">Diventa Toelettatore</a>
+                                    <a href="diventaToelettatore.jsp">Diventa Toelettatore</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
+                        </li> <li>
+                           <div>
+                           <% 
+                            int ruolo = (Integer) session.getAttribute("ruolo");
+                        	if (ruolo==1 || ruolo==0){
+                        	   System.out.print("sei sulla buona strada ");
+                        	   %>
+                        	    <li>
+                                    <a  href="registrazioneDogFriendly.jsp">Aggiungi dogfrendly</a>
+                        	   
+                        	    </li>
+                        	     <% if (ruolo==0){%>
+                        	     
+                        	    	 <%   } %>
+                                <li>
+                                    <a href="cambiaRuolo.jsp">Cambia Ruolo</a>
+                                </li>
+                        	   <% 
+                           } %>
+                           </div>
                         </li>
                     </ul>
                 </div>
@@ -351,12 +383,15 @@ nascita:1234567890
 -->
 <% 
 Utente utente = new Utente();
+String root = getServletContext().getRealPath("WEB-INF/../")+"/WebContent"+session.getAttribute("id_utente");
+
+
 
 %>
 
              <table class="table table-user-information">
                     <tbody>
-                     <img alt="User Pic" width="100" height="100" src="https://www.cesvot.it/sites/default/files/default_images/no-utente_0_0.jpg" class="img-circle img-responsive" > 
+                     <img alt="User Pic" width="100" height="100" src="<%= root %>" class="img-circle img-responsive" > 
                       <br>
                       <tr>
                         <td>Username:</td>
@@ -370,11 +405,13 @@ Utente utente = new Utente();
                         <td>Cognome</td>
                         <td><%= session.getAttribute("cognome") %></td>
                       </tr>
-                   
-                         <tr>
-                             <tr>
+                   		<tr>
                         <td>Sesso</td>
                         <td><%= session.getAttribute("sesso") %></td>
+                      </tr>
+                      <tr>
+                        <td>Data di Nascita</td>
+                        <td><%= session.getAttribute("nascita") %></td>
                       </tr>
                         <tr>
                         <td>Indirizzo</td>
