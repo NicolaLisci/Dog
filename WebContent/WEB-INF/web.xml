@@ -135,4 +135,14 @@
     <servlet-name>PassaUtenteRuolo</servlet-name>
     <url-pattern>/PassaUtenteRuolo</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <display-name>ProfiloToelettatore</display-name>
+    <servlet-name>ProfiloToelettatore</servlet-name>
+    <servlet-class>it.ats.controllo.ProfiloToelettatore</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProfiloToelettatore</servlet-name>
+    <url-pattern>/ProfiloToelettatore</url-pattern>
+  </servlet-mapping>
 </web-app>
