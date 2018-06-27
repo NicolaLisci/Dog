@@ -15,6 +15,7 @@ public interface DAOUtente {
 	void aggiorna(Utente utente)throws DAOException;
 	
 	Utente findUtenteByUsername (String username) throws DAOException;
+	Utente findUtenteById (int id) throws DAOException;
 	
 }
 
