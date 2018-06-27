@@ -46,6 +46,8 @@ public class DAOToelettatoreImpl implements DAOToelettatore
 					String cognome=resultSet2.getString(3);
 					String email=resultSet2.getString(11);
 					String nTel=resultSet2.getString(12);
+					int id=resultSet2.getInt(1);
+					utente.setId(id);
 					utente.setNome(nome);
 					utente.setCognome(cognome);
 					utente.seteMail(email);
