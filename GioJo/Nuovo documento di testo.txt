@@ -1,78 +1,78 @@
-public Utente findUtenteById(int idd) throws DAOException {
-		String sql = "SELECT * FROM UTENTE WHERE ID_utente = " + idd + " ";
-		Utente utente = new Utente();
-		DataSource instance = DataSource.getInstance();
-		Connection connection = null;
-		Statement statement = null;
-		ResultSet resultSet = null;
-		try {
 
-			connection = instance.getConnection();
-			statement = connection.createStatement();
-			resultSet = statement.executeQuery(sql);
+		<!-- Page Content -->
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header">TOELETTATORE</h1>
+					</div>
+					<div>
 
-			if (resultSet.next()) {
-				System.out.println(resultSet);
 
-				int id_utente = resultSet.getInt(1);
-				String nome = resultSet.getString(2);
-				String cognome = resultSet.getString(3);
-				String sesso = resultSet.getString(4);
-				String username = resultSet.getString(5);
-				String passwrd = resultSet.getString(6);
-				String citta = resultSet.getString(7);
-				String foto = resultSet.getString(8);
-				String indirizzo = resultSet.getString(9);
-				int verificato = resultSet.getInt(10);
-				String mail = resultSet.getString(11);
-				String telefono = resultSet.getString(12);
-				String nascita = resultSet.getString(13);
+						<%
+							List<Utente> listaToelettatori = (List<Utente>) session.getAttribute("listaToelettatori");
+							listaCane = (List<Cane>) session.getAttribute("listaCani");
+						%>
 
-				System.out.println("id_utente:" + id_utente);
-				System.out.println("nome:" + nome);
-				System.out.println("cognome:" + cognome);
-				System.out.println("sesso:" + sesso);
-				System.out.println("username:" + username);
-				System.out.println("passwrd:" + passwrd);
-				System.out.println("citta:" + citta);
-				System.out.println("foto:" + foto);
-				System.out.println("indirizzo:" + indirizzo);
-				System.out.println("verificato:" + verificato);
-				System.out.println("mail:" + mail);
-				System.out.println("telefono:" + telefono);
-				System.out.println("nascita:" + nascita);
+						<div class="container-fluid table-responsive">
+							<table class="table table-striped">
+								<thead>
+									<tr>
 
-				utente.setId(id_utente);
-				utente.setNome(nome);
-				utente.setCognome(cognome);
-				utente.setSesso(sesso);
-				utente.setUsername(username);
-				utente.setPassword(passwrd);
-				utente.setCitta(citta);
-				utente.setPathFoto(foto);
-				utente.setIndirizzo(indirizzo);
-				utente.setVerificato(verificato);
-				utente.seteMail(mail);
-				utente.setnTelefono(telefono);
-				utente.setDataNascita(nascita);
+										<th>Nome</th>
+										<th>Cognome</th>
+										<th></th>
+								</thead>
+								<tbody>
+									<%
+										for (Utente utente : listaToelettatori) {
+									%>
+									<tr>
+										<td><%=utente.getNome()%></td>
+										<td><%=utente.getCognome()%></td>
+										<td>
+											<form action="ProfiloToelettatore" method="POST">
+												<input type="hidden" name="idToelettatore"
+													value="<%=utente.getId()%>"> <input type="submit"
+													name="prenota" class="btn btn-primary" value="Prenota">
+											</form>
+										</td>
+										<%
+											}
+										%>
+									
+								</tbody>
 
-			}
+							</table>
 
-		} catch (SQLException ex) {
 
-			System.out.println(ex.getMessage());
 
-			throw new DAOException(ex.getMessage(), ex);
 
-		} finally {
 
-			instance.close(resultSet);
+						</div>
+						<!-- /.col-lg-12 -->
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.container-fluid -->
 
-			instance.close(statement);
+			</div>
+			<!-- /#page-wrapper -->
 
-			instance.close(connection);
+		</div>
+		<!-- /#wrapper -->
 
-		}
-		return utente;
+		<!-- jQuery -->
+		<script src="vendor/jquery/jquery.min.js"></script>
 
-	}
+		<!-- Bootstrap Core JavaScript -->
+		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+		<!-- Metis Menu Plugin JavaScript -->
+		<script src="vendor/metisMenu/metisMenu.min.js"></script>
+
+		<!-- Custom Theme JavaScript -->
+		<script src="dist/js/sb-admin-2.js"></script>
+</body>
+
+</html>
