@@ -1,0 +1,78 @@
+public Utente findUtenteById(int idd) throws DAOException {
+		String sql = "SELECT * FROM UTENTE WHERE ID_utente = " + idd + " ";
+		Utente utente = new Utente();
+		DataSource instance = DataSource.getInstance();
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try {
+
+			connection = instance.getConnection();
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(sql);
+
+			if (resultSet.next()) {
+				System.out.println(resultSet);
+
+				int id_utente = resultSet.getInt(1);
+				String nome = resultSet.getString(2);
+				String cognome = resultSet.getString(3);
+				String sesso = resultSet.getString(4);
+				String username = resultSet.getString(5);
+				String passwrd = resultSet.getString(6);
+				String citta = resultSet.getString(7);
+				String foto = resultSet.getString(8);
+				String indirizzo = resultSet.getString(9);
+				int verificato = resultSet.getInt(10);
+				String mail = resultSet.getString(11);
+				String telefono = resultSet.getString(12);
+				String nascita = resultSet.getString(13);
+
+				System.out.println("id_utente:" + id_utente);
+				System.out.println("nome:" + nome);
+				System.out.println("cognome:" + cognome);
+				System.out.println("sesso:" + sesso);
+				System.out.println("username:" + username);
+				System.out.println("passwrd:" + passwrd);
+				System.out.println("citta:" + citta);
+				System.out.println("foto:" + foto);
+				System.out.println("indirizzo:" + indirizzo);
+				System.out.println("verificato:" + verificato);
+				System.out.println("mail:" + mail);
+				System.out.println("telefono:" + telefono);
+				System.out.println("nascita:" + nascita);
+
+				utente.setId(id_utente);
+				utente.setNome(nome);
+				utente.setCognome(cognome);
+				utente.setSesso(sesso);
+				utente.setUsername(username);
+				utente.setPassword(passwrd);
+				utente.setCitta(citta);
+				utente.setPathFoto(foto);
+				utente.setIndirizzo(indirizzo);
+				utente.setVerificato(verificato);
+				utente.seteMail(mail);
+				utente.setnTelefono(telefono);
+				utente.setDataNascita(nascita);
+
+			}
+
+		} catch (SQLException ex) {
+
+			System.out.println(ex.getMessage());
+
+			throw new DAOException(ex.getMessage(), ex);
+
+		} finally {
+
+			instance.close(resultSet);
+
+			instance.close(statement);
+
+			instance.close(connection);
+
+		}
+		return utente;
+
+	}
