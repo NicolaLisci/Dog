@@ -2,3 +2,8 @@ vedi dogFriendly
 
 in profilo utente no img
 in profilo cane c'è l immagine di un utente
+---------------------------------------------------------------------------
+
+DA METTERE IN PROFILO CANE RIGA 232
+ <a href="EliminaCane" class="btn btn-danger">Rimuovi</a>
+--------------------------------------------------------------------------- 
