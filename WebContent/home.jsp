@@ -258,8 +258,28 @@
                             </div>
                             <!-- /input-group -->
                         </li>
-                        <li>
-                            <a href="index.html"> Dashboard</a>
+                         
+                         <li>
+                            <a href=""></i>DogFriendly<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="VediDogFriendly">Vedi</a>
+                                </li>
+                                <li>
+                              <%   int ruolo = (Integer) session.getAttribute("ruolo");
+                           System.out.print(ruolo);
+                        	if (ruolo==1 || ruolo==0){
+                        	   
+                        	   %>
+                        	    <li>
+                                    <a  href="registrazioneDogFriendly.jsp">Aggiungi dogfrendly</a>
+                        	   
+                        	    </li><%   } %>
+                                    
+                                </li>
+                               
+                            </ul>
+                           
                         </li>
                         <li>
                             <a href="#">I miei cani<span class="fa arrow"></span></a>
@@ -313,7 +333,7 @@
                             </ul>
                            
                         </li>
-                        <li class="active">
+                        <li >
                             <a href="#">Toelettatura<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -324,55 +344,34 @@
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
-                        </li>
-                        
-                        
-                         <li>
-                           <div>
-                           <% 
-                            int ruolo = (Integer) session.getAttribute("ruolo");
-                        	if (ruolo==1 || ruolo==0){
-                        	   System.out.print("sei sulla buona strada ");
-                        	   %>
-                        	    <li>
-                                    <a  href="registrazioneDogFriendly.jsp">Aggiungi dogfrendly</a>
-                        	   
-                        	    </li>
-                        	     <% if (ruolo==0){%>
-                        	     
+                        </li> 
+                          <li ><% if (ruolo==0){%>
+                        	      <a href="cambiaRuolo.jsp">Cambia Ruolo</a>
                         	    	 <%   } %>
-                                <li>
-                                    <a href="cambiaRuolo.jsp">Cambia Ruolo</a>
-                                </li>
-                        	   <% 
-                           } %>
-                           </div>
-                        </li>
-                    </ul>
+                   </li>  </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
             <!-- /.navbar-static-side -->
         </nav>
 
-        
-
-        <!-- Page Content -->
+          <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">HOME
-                    
+                        <h1 class="page-header">HOME</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
             </div>
+
+       
             <!-- /.container-fluid -->
             
-            
-              <img src="uploads/Logo.png" alt="logo" height="60%" width="100%"></h1>
+            <img src="uploads/Logo.png" alt="logo" height="60%" width="100%"></h1>
+          
         </div>
         <!-- /#page-wrapper -->
 
