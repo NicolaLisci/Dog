@@ -1,0 +1,8 @@
+
+
+in profilo utente no immagine 
+in profilo cane c'è l immagine di un utente
+rimuovi cane
+barra di ricerca non serve a nulla
+solo in home ci sono i comandi da supervisore e admin
+eliminare addestratore in cambiaruolo.jsp
