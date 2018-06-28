@@ -5,3 +5,5 @@ in profilo cane c'è l immagine di un utente
 ---------------------------------------------------------------------------
 
 modificaCane.jsp ha i campi storti
+
+invertire data in modifica cane
