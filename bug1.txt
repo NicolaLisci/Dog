@@ -1,0 +1,8 @@
+vedi dogFriendly
+
+in profilo utente no img
+in profilo cane c'è l immagine di un utente
+rimuovi cane
+toelet ha cerca in vediDogSitter
+solo in home ci sono i comandi da supervisore e admin
+eliminare addestratore in cambiaruolo.jsp
