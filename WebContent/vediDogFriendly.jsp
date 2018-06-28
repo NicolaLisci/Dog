@@ -357,29 +357,44 @@
 
         
 
-        <!-- Page Content -->
-        <div id="page-wrapper">
+         <!-- Page Content --> <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">DOGFRIENDLY</h1>
-                        
                     </div>
                     <div>
+                    
+                 <%   List<DogFriendly> listDogFriendly=(List<DogFriendly>)session.getAttribute("listaDogFriendly");
+                 listDogFriendly=(List<DogFriendly>)session.getAttribute("listaDogFriendly");%>
+                    <div class="container-fluid table-responsive">
+                    <table class="table table-striped">
+                    <thead>
+                    <tr>
+                 
+                    <th>Nome Attività</th>
+                    <th>Indirizzo</th>
+                    <th></th>
+                    </thead>
+                    <tbody>
                     <%
-             	List<DogFriendly>listDogFriendly=(List<DogFriendly>)session.getAttribute("listaDogFriendly");
-             for(DogFriendly dogFriendly: listDogFriendly){
-            	 if(dogFriendly!=null)
-            	 {
-            		%>
-            		NomeAttivita: <%=dogFriendly.getNomeAttivita() %><br>
-            		Indirizzo: <%=dogFriendly.getIndirizzo() %><br>
+                    for(DogFriendly dogFriendly: listDogFriendly){
+                    	
+							%>
             		
-            		________________________________________________________<br>
-            	 <%
-            	 }
+            		<tr>
+            		<td><%=dogFriendly.getNomeAttivita() %></td>
+            		<td><%=dogFriendly.getIndirizzo() %></td>
+            		
+            		<%
+            	 
              }
-             %></div>
+             %>
+             
+                    </tbody>
+
+                    </table>
+      
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
@@ -408,4 +423,3 @@
 </body>
 
 </html>
-             
