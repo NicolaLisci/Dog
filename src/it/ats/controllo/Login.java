@@ -81,13 +81,12 @@ public class Login extends HttpServlet {
 			
 			if (utente.getId()!=0) {
 				HttpSession session=request.getSession();  
+				session.setAttribute("ruolo",2);
 				for (Utente_Ruolo ruolo : lista_ruoli)
 				{
 					if (ruolo.getId_Ruolo()==0 || ruolo.getId_Ruolo()==1)
 					{
 						session.setAttribute("ruolo",ruolo.getId_Ruolo());
-					}else{
-						session.setAttribute("ruolo",2);
 					}
 	 			}
 				
