@@ -54,7 +54,8 @@ public class ModificaCaneServlet extends HttpServlet {
 			int pedegree = Integer.parseInt(request.getParameter("pedegree"));
 			int razza=Integer.parseInt(request.getParameter("razza"));
 			HttpSession session=request.getSession();
-			int idCane=Integer.parseInt(request.getParameter("idCane"));
+			
+			int idCane=(int)session.getAttribute("idCane");
 			Cane cane = new Cane();
 			
 			cane.setPathFoto("foto");
