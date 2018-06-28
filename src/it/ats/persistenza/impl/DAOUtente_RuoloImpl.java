@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
+import it.ats.modello.Cane;
 import it.ats.modello.Utente;
 import it.ats.modello.Utente_Ruolo;
 import it.ats.persistenza.DAOException;
@@ -143,9 +145,6 @@ public class DAOUtente_RuoloImpl implements DAOUtente_Ruolo {
 
 		}
 		return lista_ruoli;
-
-	
-}
 
 	
 }
