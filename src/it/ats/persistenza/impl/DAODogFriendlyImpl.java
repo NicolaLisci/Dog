@@ -10,7 +10,7 @@ import java.util.List;
 
 import it.ats.modello.Cane;
 import it.ats.modello.DogFriendly;
-
+import it.ats.modello.Utente;
 import it.ats.persistenza.DAOException;
 import it.ats.persistenza.DataSource;
 import it.ats.persistenza.DAODogFriendly;
@@ -20,15 +20,10 @@ public class DAODogFriendlyImpl implements DAODogFriendly {
 	public List<DogFriendly> findAll() throws DAOException {
 
 		List<DogFriendly> listDogFriendly = new ArrayList<DogFriendly>();
-
-		String sql = "SELECT * FROM DOG_FRIENDLY ";
-
+		String sql = "SELECT DOG_FRIENDLY.NOMEATTIVITA,DOG_FRIENDLY.INDIRIZZO,TIPO_ATTIVITA.TIPO FROM DOG_FRIENDLY, TIPO_ATTIVITA WHERE DOG_FRIENDLY.ID_ATTIVITA = TIPO_ATTIVITA.ID_ATTIVITA ";
 		DataSource instance = DataSource.getInstance();
-
 		Connection connection = null;
-
 		Statement statement = null;
-
 		ResultSet resultSet = null;
 
 		try {
@@ -40,23 +35,16 @@ public class DAODogFriendlyImpl implements DAODogFriendly {
 			resultSet = statement.executeQuery(sql);
 
 			while (resultSet.next()) {
-				// id_friendly NUMBER PRIMARY KEY NOT NULL,
-				// nomeAttivita VARCHAR2(40) NOT NULL,
-				// indirizzo VARCHAR2(40) NOT NULL,
-				// id_attivita NUMBER
+				
+				String nomeAttivita = resultSet.getString(1);
+				String indirizzo = resultSet.getString(2);
+				String tipoAttivita = resultSet.getString(3);
 
-				int idDogFriendly = resultSet.getInt(1);
-
-				String nomeAttivita = resultSet.getString(2);
-				String indirizzo = resultSet.getString(3);
-				int id_attivita = resultSet.getInt(4);
-
+				
 				DogFriendly DogFriendlyC = new DogFriendly();
-
-				DogFriendlyC.setid_DogFriendly(idDogFriendly);
-				DogFriendlyC.setIdAttivita(id_attivita);
 				DogFriendlyC.setIndirizzo(indirizzo);
 				DogFriendlyC.setNomeAttivita(nomeAttivita);
+				DogFriendlyC.setTipoAttivita(tipoAttivita);
 				listDogFriendly.add(DogFriendlyC);
 
 			}
@@ -80,6 +68,8 @@ public class DAODogFriendlyImpl implements DAODogFriendly {
 		return listDogFriendly;
 
 	}
+	
+	
 
 	@Override
 	public List<DogFriendly> findId(int IdDogFriendly) throws DAOException {
@@ -113,8 +103,8 @@ public class DAODogFriendlyImpl implements DAODogFriendly {
 
 				DogFriendly DogFriendlyC = new DogFriendly();
 
-				DogFriendlyC.setid_DogFriendly(idDogFriendly);
-				DogFriendlyC.setIdAttivita(id_attivita);
+				DogFriendlyC.setId_DogFriendly(idDogFriendly);
+			//	DogFriendlyC.setIdAttivita(id_attivita);
 				DogFriendlyC.setIndirizzo(indirizzo);
 				DogFriendlyC.setNomeAttivita(nomeAttivita);
 				listDogFriendly.add(DogFriendlyC);
@@ -145,7 +135,7 @@ public class DAODogFriendlyImpl implements DAODogFriendly {
 	public List<DogFriendly> findidAttivita(int idAttivita) throws DAOException {
 		List<DogFriendly> listDogFriendly = new ArrayList<DogFriendly>();
 
-		String sql = "SELECT * FROM DOG_FRIENDLY  WHERE id_attivita=" + idAttivita;
+		String sql = "SELECT * FROM DOG_FRIENDLY  WHERE ID_ATTIVITA =" + idAttivita;
 
 		DataSource instance = DataSource.getInstance();
 
@@ -173,8 +163,8 @@ public class DAODogFriendlyImpl implements DAODogFriendly {
 
 				DogFriendly DogFriendlyC = new DogFriendly();
 
-				DogFriendlyC.setid_DogFriendly(idDogFriendly);
-				DogFriendlyC.setIdAttivita(id_attivita);
+				DogFriendlyC.setId_DogFriendly(idDogFriendly);
+				//DogFriendlyC.setIdAttivita(id_attivita);
 				DogFriendlyC.setIndirizzo(indirizzo);
 				DogFriendlyC.setNomeAttivita(nomeAttivita);
 				listDogFriendly.add(DogFriendlyC);
@@ -233,8 +223,8 @@ public class DAODogFriendlyImpl implements DAODogFriendly {
 
 				DogFriendly DogFriendlyC = new DogFriendly();
 
-				DogFriendlyC.setid_DogFriendly(idDogFriendly);
-				DogFriendlyC.setIdAttivita(id_attivita);
+				DogFriendlyC.setId_DogFriendly(idDogFriendly);
+			//	DogFriendlyC.setIdAttivita(id_attivita);
 				DogFriendlyC.setIndirizzo(indirizzo);
 				DogFriendlyC.setNomeAttivita(nomeAttivita);
 				listDogFriendly.add(DogFriendlyC);
@@ -293,8 +283,8 @@ public class DAODogFriendlyImpl implements DAODogFriendly {
 
 				DogFriendly DogFriendlyC = new DogFriendly();
 
-				DogFriendlyC.setid_DogFriendly(idDogFriendly);
-				DogFriendlyC.setIdAttivita(id_attivita);
+				DogFriendlyC.setId_DogFriendly(idDogFriendly);
+				//DogFriendlyC.setIdAttivita(id_attivita);
 				DogFriendlyC.setIndirizzo(indirizzo);
 				DogFriendlyC.setNomeAttivita(nomeAttivita);
 				listDogFriendly.add(DogFriendlyC);
@@ -347,7 +337,7 @@ public class DAODogFriendlyImpl implements DAODogFriendly {
 	@Override
 	public void salva(DogFriendly dogFriendly) throws DAOException {
 
-		String sql = "INSERT INTO DOG_FRIENDLY  VALUES (ID_FRIENDLY_SEQ.NEXTVAL,?,?,?) ";
+		String sql = "INSERT INTO DOG_FRIENDLY VALUES (ID_FRIENDLY_SEQ.NEXTVAL,?,?,?) ";
 
 		DataSource instance = DataSource.getInstance();
 		Connection connection = null;
@@ -362,40 +352,14 @@ public class DAODogFriendlyImpl implements DAODogFriendly {
 			preparedStatement.setString(2, dogFriendly.getIndirizzo());
 			preparedStatement.setInt(3, dogFriendly.getIdAttivita());
 			
+			
 			preparedStatement.executeUpdate();
 			
 			ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
 			if (generatedKeys != null && generatedKeys.next()) {
 				int id = generatedKeys.getInt(1);
-				dogFriendly.setid_DogFriendly(id);
+				dogFriendly.setId_DogFriendly(id);
 			}
-
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new DAOException(e.getMessage(), e);
-		} finally {
-			instance.close(preparedStatement);
-			instance.close(connection);
-
-		}
-	}@Override
-	public void aggiorna(DogFriendly dogFriendly) throws DAOException {
-
-
-		String sql = "UPDATE DOGFRIENDLY SET NOMEATTIVITA=?, INDIRIZZO=?, ID_ATTIVITA=? WHERE ID_FRIENDLY=?";
-
-		DataSource instance = DataSource.getInstance();
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		try {
-			connection = instance.getConnection();
-			preparedStatement = connection.prepareStatement(sql, new String[] { "ID_FRIENDLY" });
-			preparedStatement.setString(1, dogFriendly.getNomeAttivita());
-			preparedStatement.setString(2, dogFriendly.getIndirizzo());
-			preparedStatement.setInt(3, dogFriendly.getIdAttivita());
-			
-			preparedStatement.setInt(4, dogFriendly.getid_DogFriendly());
-			preparedStatement.executeUpdate();
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
